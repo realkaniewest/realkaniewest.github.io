@@ -1,4 +1,4 @@
-﻿// Источник: 21st.dev / Codehagen / display-cards
+// Источник: 21st.dev / Codehagen / display-cards
 // Скопировать в src/components/ui/display-cards.tsx
 // Зависимости: lucide-react, cn из src/lib/utils
 

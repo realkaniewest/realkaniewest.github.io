@@ -1,4 +1,4 @@
-﻿// Источник: 21st.dev / victorwelander / gooey-text-morphing
+// Источник: 21st.dev / victorwelander / gooey-text-morphing
 // Скопировать в src/components/ui/gooey-text-morphing.tsx
 // Зависимости: cn из src/lib/utils
 

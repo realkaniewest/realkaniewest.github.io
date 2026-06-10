@@ -1,4 +1,4 @@
-﻿# realkaniewest.github.io
+# realkaniewest.github.io
 
 Одностраничное портфолио realkaniewest на Vite + React + TypeScript + Tailwind CSS.
 

@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { C, D, GLITCH, buildCatProgram, dogProgram, pad, renderPet, type PetFrame, type ProgramStep } from "./petFrames";
 import { useReducedMotion } from "./useReducedMotion";
 import { Shell, type PetApi } from "./Shell";

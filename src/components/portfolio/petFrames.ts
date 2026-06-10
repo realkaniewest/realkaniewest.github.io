@@ -1,4 +1,4 @@
-﻿export type PetFrame = string[];
+export type PetFrame = string[];
 export type ProgramStep = [PetFrame, number, number];
 
 export const pad = (n: number) => " ".repeat(Math.max(0, n));

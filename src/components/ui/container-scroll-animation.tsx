@@ -1,4 +1,4 @@
-﻿// Источник: 21st.dev / aceternity / container-scroll-animation
+// Источник: 21st.dev / aceternity / container-scroll-animation
 // Скопировать в src/components/ui/container-scroll-animation.tsx
 // Зависимости: framer-motion
 import React, { useRef } from "react";

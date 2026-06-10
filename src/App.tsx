@@ -1,4 +1,4 @@
-﻿import { Bot, Database, LineChart, ServerCog, ShoppingCart, Terminal } from "lucide-react";
+import { Bot, Database, LineChart, ServerCog, ShoppingCart, Terminal } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import DisplayCards from "@/components/ui/display-cards";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";

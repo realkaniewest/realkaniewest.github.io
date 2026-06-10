@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/3d-testimonials";
+import type { Lang } from "@/i18n";
 
 const reviews = [
   {
@@ -68,6 +69,72 @@ const reviews = [
   },
 ];
 
+const enReviews = [
+  {
+    project: "Automated reporting system implementation",
+    name: "Mikhail Orlov",
+    username: "judo-judik",
+    time: "5 days ago",
+    body: "Thanks for the excellent work. The reporting automation is convenient, all required changes were added during review, and the tool was brought to a final working state.",
+  },
+  {
+    project: "YaFood UI migration to sushiap.ru",
+    name: "Daniil Sokolov",
+    username: "sushi-dev",
+    time: "25 days ago",
+    body: "Everything is great as usual, all edits were included. Not my first order here, always in touch. Thank you.",
+  },
+  {
+    project: "OCStore fixes: SKIF CRM, bonuses, SMS",
+    name: "Artem Volkov",
+    username: "storefixer",
+    time: "1 month ago",
+    body: "All good, always available, all suggestions are processed quickly.",
+  },
+  {
+    project: "Yandex Food and SKIF CRM integration fix",
+    name: "Nikita Smirnov",
+    username: "crm-pilot",
+    time: "1 month ago",
+    body: "Excellent seller. Everything is super.",
+  },
+  {
+    project: "Avito parser setup for a listings board",
+    name: "Kirill Morozov",
+    username: "avito-parser",
+    time: "2 months ago",
+    body: "Not the first order. Done exactly as needed, on time and in the right way. Great work.",
+  },
+  {
+    project: "GFS + Yandex Food -> SKIF + T-Bank parsing",
+    name: "Roman Belov",
+    username: "foodops",
+    time: "2 months ago",
+    body: "Everything was done, always in touch, ready to adjust details. Nice to work together.",
+  },
+  {
+    project: "Wildberries analytics in Google Sheets",
+    name: "Ivan Karpov",
+    username: "sheet-runner",
+    time: "3 months ago",
+    body: "Sheets update by themselves now, reports are easier to read. The task was understood quickly and shipped properly.",
+  },
+  {
+    project: "Telegram bot for requests and alerts",
+    name: "Sergey Antonov",
+    username: "bot-order",
+    time: "3 months ago",
+    body: "The bot runs steadily, requests are not lost, and the instructions are clear. No issues with timing.",
+  },
+  {
+    project: "Marketplace integration with Bitrix24",
+    name: "Pavel Egorov",
+    username: "b24-sync",
+    time: "4 months ago",
+    body: "Orders started going into CRM automatically. Managers stopped moving everything by hand. Thanks.",
+  },
+];
+
 function ReviewCard({ project, name, username, time, body }: (typeof reviews)[number]) {
   return (
     <Card className="review-card">
@@ -88,10 +155,11 @@ function ReviewCard({ project, name, username, time, body }: (typeof reviews)[nu
   );
 }
 
-export function ReviewsWall() {
-  const first = reviews.slice(0, 5);
-  const second = reviews.slice(4);
-  const third = [...reviews.slice(2), ...reviews.slice(0, 2)];
+export function ReviewsWall({ lang = "ru" }: { lang?: Lang }) {
+  const activeReviews = lang === "en" ? enReviews : reviews;
+  const first = activeReviews.slice(0, 5);
+  const second = activeReviews.slice(4);
+  const third = [...activeReviews.slice(2), ...activeReviews.slice(0, 2)];
 
   return (
     <div className="reviews-stage" aria-label="Отзывы клиентов">

@@ -1,193 +1,26 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>realkaniewest — бэкенд, парсеры, автоматизация</title>
-  <meta name="description" content="Фриланс-разработчик: Python, PHP, парсеры, интеграции с CRM и маркетплейсами, Telegram-боты, автоматизация бизнес-процессов.">
-  <meta property="og:title" content="realkaniewest — бэкенд, парсеры, автоматизация">
-  <meta property="og:description" content="Делаю ботов, парсеры и интеграции, которые экономят часы ручной работы.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<header class="site-header">
-  <div class="container site-header__inner">
-    <a class="brand" href="#top">realkaniewest<span class="brand__at">@</span>dev<span class="brand__cursor"></span></a>
-    <nav class="site-nav">
-      <a href="#stack">Стек</a>
-      <a href="#projects">Проекты</a>
-      <a href="#contact">Контакты</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero container">
-    <div class="hero__text">
-      <p class="hero__kicker">// фриланс-разработчик</p>
-      <h1 class="hero__title">realkaniewest</h1>
-      <p class="hero__subtitle">Бэкенд, парсеры,<br>автоматизация</p>
-      <p class="hero__lead">
-        Делаю ботов, парсеры и интеграции, которые тихо работают на сервере
-        и экономят людям часы ручной работы. Довожу до результата:
-        код + деплой + инструкция.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--accent" href="https://t.me/realkaniewest2">Написать в Telegram</a>
-        <a class="btn btn--ghost" href="mailto:isokokluu@gmail.com">isokokluu@gmail.com</a>
-      </div>
-    </div>
-
-    <div class="hero__term">
-      <div class="term term--hero">
-        <div class="term__bar">
-          <span class="term__dot term__dot--r"></span>
-          <span class="term__dot term__dot--y"></span>
-          <span class="term__dot term__dot--g"></span>
-          <span class="term__title">realkaniewest@dev: ~</span>
-        </div>
-        <div class="term__body">
-          <pre class="term__cat" id="cat" aria-hidden="true"></pre>
-          <div class="term__shell" id="shell">
-            <div class="term__line"><span class="term__prompt">$</span>&nbsp;<span id="typed"></span><span class="cursor" id="cursor"></span></div>
-            <div class="term__out" id="typed-out"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats reveal">
-    <div class="container stats__grid">
-      <div class="stat"><div class="stat__num">5.0</div><div class="stat__label">рейтинг на Kwork</div></div>
-      <div class="stat"><div class="stat__num stat__num--text">заказы</div><div class="stat__label">выполнены и оплачены</div></div>
-      <div class="stat"><div class="stat__num">100%</div><div class="stat__label">сдано вовремя</div></div>
-      <div class="stat"><div class="stat__num">50%</div><div class="stat__label">повторных заказов</div></div>
-    </div>
-  </section>
-
-  <!-- STACK -->
-  <section class="section container reveal" id="stack">
-    <h2 class="section__title"><span class="section__hash">#</span> Стек</h2>
-    <div class="chips">
-      <span class="chip">Python</span>
-      <span class="chip">PHP</span>
-      <span class="chip">JavaScript</span>
-      <span class="chip">Selenium</span>
-      <span class="chip">REST API</span>
-      <span class="chip">Google Sheets API</span>
-      <span class="chip">OpenCart / OCStore</span>
-      <span class="chip">Bitrix24</span>
-      <span class="chip">Telegram-боты</span>
-      <span class="chip">Linux / VPS</span>
-      <span class="chip">MySQL / SQLite</span>
-      <span class="chip">systemd</span>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section container reveal" id="projects">
-    <h2 class="section__title"><span class="section__hash">#</span> Проекты</h2>
-    <p class="section__note">Реальные заказы с Kwork. Все работают в продакшене.</p>
-    <div class="cards">
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/food-automation</span></div>
-        <div class="card__body">
-          <h3 class="card__title">Автоматизация закупок сети ресторанов</h3>
-          <p class="card__desc">Парсер поставщика GFS + заказы Яндекс.Еды автоматически попадают в СКИФ CRM с оплатой. Работает круглосуточно как systemd-сервис.</p>
-          <div class="card__tags"><span>Python</span><span>Selenium</span><span>REST API</span><span>systemd</span></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/b24-marketplaces</span></div>
-        <div class="card__body">
-          <h3 class="card__title">Ozon и Wildberries в Битрикс24</h3>
-          <p class="card__desc">Заказы с маркетплейсов и статусы доставки синхронизируются с CRM сами, менеджер ничего не переносит руками.</p>
-          <div class="card__tags"><span>PHP</span><span>REST API</span><span>Bitrix24</span></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/avito-parser</span></div>
-        <div class="card__body">
-          <h3 class="card__title">Парсер Avito для доски объявлений</h3>
-          <p class="card__desc">Ежедневный сбор объявлений по 10 категориям, загрузка с фото на сайт, автоодобрение через админку, защита от дублей.</p>
-          <div class="card__tags"><span>Python</span><span>Selenium</span><span>SQLite</span></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/wb-analytics</span></div>
-        <div class="card__body">
-          <h3 class="card__title">Аналитика Wildberries в Google Sheets</h3>
-          <p class="card__desc">Продажи и остатки подтягиваются в таблицы автоматически, сводные листы обновляются сами.</p>
-          <div class="card__tags"><span>Python</span><span>Google Sheets API</span><span>Apps Script</span></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/ocstore-crm</span></div>
-        <div class="card__body">
-          <h3 class="card__title">Доработки магазина на OCStore</h3>
-          <p class="card__desc">Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.</p>
-          <div class="card__tags"><span>PHP</span><span>MySQL</span><span>OCStore</span></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__bar"><span class="card__path">~/projects/yafood-ui</span></div>
-        <div class="card__body">
-          <h3 class="card__title">YaFood UI для сети ресторанов</h3>
-          <p class="card__desc">Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.</p>
-          <div class="card__tags"><span>PHP</span><span>JavaScript</span><span>CSS</span></div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="section container reveal">
-    <h2 class="section__title"><span class="section__hash">#</span> Как работаю</h2>
-    <div class="log">
-      <div class="log-line"><span class="log-line__num">[1]</span> уточняю задачу и фиксирую ТЗ — без сюрпризов в конце</div>
-      <div class="log-line"><span class="log-line__num">[2]</span> делаю и показываю прогресс, на связи в процессе</div>
-      <div class="log-line"><span class="log-line__num">[3]</span> сдаю работающий результат, а не «почти готово»</div>
-      <div class="log-line"><span class="log-line__num">[4]</span> передаю с инструкцией и остаюсь на связи после сдачи</div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta reveal" id="contact">
-    <div class="container cta__inner">
-      <p class="cta__prompt">$ есть задача?</p>
-      <h2 class="cta__title">Напишите — обсудим</h2>
-      <div class="cta__actions">
-        <a class="btn btn--accent btn--lg" href="https://t.me/realkaniewest2">Telegram: @realkaniewest2</a>
-        <a class="btn btn--ghost btn--lg" href="mailto:isokokluu@gmail.com">isokokluu@gmail.com</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <span>(c) realkaniewest, 2026</span>
-    <span class="site-footer__cat">=^.^=</span>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
-</body>
+﻿<!doctype html>
+<html lang="ru" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>realkaniewest - бэкенд, парсеры, автоматизация</title>
+    <meta name="description" content="Фриланс-разработчик: Python, PHP, парсеры, интеграции с CRM и маркетплейсами, Telegram-боты, автоматизация бизнес-процессов." />
+    <meta property="og:title" content="realkaniewest - бэкенд, парсеры, автоматизация" />
+    <meta property="og:description" content="Делаю ботов, парсеры и интеграции, которые экономят часы ручной работы." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet" />
+    <script>
+      (() => {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", saved ? saved === "dark" : prefersDark);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,22 +1,23 @@
-# realkaniewest@dev — сайт-портфолио
+﻿# realkaniewest.github.io
 
-Одностраничный сайт-портфолио в терминальном стиле: тёмная тема, ASCII-котик,
-который лижет лапку, typewriter-эффект `$ whoami`. Чистая статика без сборки
-и зависимостей: HTML + CSS + vanilla JS.
-
-Живёт на https://realkaniewest.github.io (GitHub Pages).
+Одностраничное портфолио realkaniewest на Vite + React + TypeScript + Tailwind CSS.
 
 ## Локальный запуск
 
+```bash
+npm install
+npm run dev
 ```
-python -m http.server 8080
+
+## Проверка прод-сборки
+
+```bash
+npm run build
+npm run preview
 ```
 
-и открыть http://localhost:8080
+## Деплой
 
-## Структура
+GitHub Pages собирается через `.github/workflows/deploy.yml` и публикует папку `dist/` через официальный `actions/deploy-pages`. Для user-site используется `base: "/"` в `vite.config.ts`.
 
-- `index.html` — вся разметка
-- `css/style.css` — тёмная терминальная тема (JetBrains Mono + Unbounded)
-- `js/main.js` — кадры котика, typewriter, появление секций
-- `tools/` — скрипты скриншот-проверки (Playwright)
+В настройках репозитория Pages должен быть выбран Source: GitHub Actions.

@@ -76,6 +76,8 @@
   const WALK_END = 12; // на сколько колонок уходит вправо (профиль шире сидячего кота)
   const GLITCH = "#*+%@.";
 
+  let petApi = null; // выставляется ниже, используется терминалом (pet/woof/meow)
+
   const catEl = document.getElementById("cat");
 
   // Программа кота: посидел-полизал слева, встал, дошёл до правого края,
@@ -180,10 +182,16 @@
 
     if (reduceMotion) {
       render(C.idle, 0);
-      catEl.addEventListener("click", () => {
-        mode = mode === "cat" ? "dog" : "cat";
+      const toggle = () => {
+        mode = mode === "dog" ? "cat" : "dog";
         render(mode === "dog" ? D.wagA : C.idle, 0);
-      });
+      };
+      catEl.addEventListener("click", toggle);
+      petApi = {
+        toDog: () => { mode = "dog"; render(D.wagA, 0); },
+        toCat: () => { mode = "cat"; render(C.idle, 0); },
+        isDog: () => mode === "dog",
+      };
     } else {
       catEl.addEventListener("click", () => {
         if (mode === "cat") {
@@ -193,6 +201,18 @@
           morph(D.wagA, 0, C.idle, 0, startCat);
         }
       });
+      petApi = {
+        toDog: () => {
+          if (mode !== "cat") return;
+          const [lines, off] = lastCatFrame;
+          morph(lines, off, D.wagA, 0, startDog);
+        },
+        toCat: () => {
+          if (mode !== "dog") return;
+          morph(D.wagA, 0, C.idle, 0, startCat);
+        },
+        isDog: () => mode === "dog",
+      };
       startCat();
     }
   }
@@ -209,19 +229,11 @@
     "Kwork: рейтинг 5.0, 100% в срок",
   ];
 
-  function finishShell() {
-    const line = document.createElement("div");
-    line.className = "term__line";
-    line.innerHTML = '<span class="term__prompt">$</span>&nbsp;';
-    outEl.after(line);
-    line.appendChild(cursorEl);
-  }
-
   if (typedEl && outEl) {
     if (reduceMotion) {
       typedEl.textContent = command;
       outEl.textContent = output.join("\n");
-      finishShell();
+      mountTerminal();
     } else {
       let c = 0;
       const typeChar = () => {
@@ -238,8 +250,7 @@
               l += 1;
               setTimeout(printLine, 260);
             } else {
-              cursorEl.style.display = "";
-              finishShell();
+              mountTerminal();
             }
           };
           setTimeout(printLine, 350);
@@ -248,6 +259,369 @@
       setTimeout(typeChar, 700);
     }
   }
+
+  /* ===== interactive shell ===== */
+  // Виртуальная ФС: строка = файл, объект = папка. Контента бэкенда нет,
+  // выполнять нечего; весь вывод печатается через textContent (без innerHTML).
+  const FS = {
+    "about.txt": [
+      "Егор, фриланс-разработчик.",
+      "Бэкенд, парсеры, интеграции, автоматизация.",
+      "Превращаю рутину в скрипты, которые тихо работают на сервере.",
+    ].join("\n"),
+    "stack.txt": "Python | PHP | JavaScript | Selenium | REST API | Google Sheets API | OpenCart | Bitrix24 | Telegram-боты | Linux/VPS | MySQL/SQLite | systemd",
+    "contact.txt": [
+      "telegram : https://t.me/realkaniewest2",
+      "email    : isokokluu@gmail.com",
+      "kwork    : realkaniewest (рейтинг 5.0)",
+    ].join("\n"),
+    "projects": {
+      "food-automation.md": "Автоматизация закупок сети ресторанов: парсер GFS + заказы Яндекс.Еды сами падают в СКИФ CRM с оплатой. Python, Selenium, systemd.",
+      "b24-marketplaces.md": "Ozon и Wildberries в Битрикс24: заказы и статусы доставки синхронизируются без рук. PHP, REST API.",
+      "avito-parser.md": "Парсер Avito: ежедневный сбор по 10 категориям, загрузка с фото, автоодобрение. Python, Selenium, SQLite.",
+      "wb-analytics.md": "Аналитика Wildberries в Google Sheets: продажи и остатки обновляются сами. Python, Google Sheets API.",
+      "ocstore-crm.md": "Доработки магазина на OCStore: СКИФ CRM, бонусы, SMS, починка оплат. PHP, MySQL.",
+      "yafood-ui.md": "Интерфейс заказа в стиле Яндекс.Еды на домене сети ресторанов. PHP, JS, CSS.",
+    },
+    "cats": {
+      "README.txt": "Породы котов, которых я уважаю. cat <имя>.txt",
+      "maine-coon.txt": "Мейн-кун: пушистый гигант до 12 кг, любит воду и поговорить. Пушистость 10/10.",
+      "british-shorthair.txt": "Британец: плюшевый, вечно слегка недоволен, но это любя.",
+      "sphynx.txt": "Сфинкс: лысый, тёплый как грелка, требует свитер и внимания.",
+      "bengal.txt": "Бенгал: мини-леопард, энергии как у трёх котов, обожает воду и хаос.",
+      "siamese.txt": "Сиам: громкий комментатор всего происходящего в доме.",
+    },
+    "dogs": {
+      "README.txt": "Хорошие мальчики и девочки. cat <имя>.txt",
+      "shiba-inu.txt": "Сиба-ину: very surprise, much wow, упрямый, но обаятельный. doge.",
+      "husky.txt": "Хаски: голубоглазый драматург, орёт как будто его обижают (это не так).",
+      "corgi.txt": "Корги: лапки коротенькие, харизма безграничная. Булочка на ножках.",
+      "border-collie.txt": "Бордер-колли: умнее многих людей, нужна работа, иначе оптимизирует диван.",
+      "samoyed.txt": "Самоед: облако с улыбкой и хвостом-бубликом.",
+    },
+    ".secrets": {
+      "konami.txt": "Подсказка: на клавиатуре попробуй стрелки и буквы из старых игр. ↑ ↑ ↓ ↓ ← → ← → B A",
+      "pet.sh": "#!/bin/sh\n# команды pet, meow, woof трогают питомца в терминале :)\necho 'погладь кота кликом или командой woof'",
+      "todo.txt": "[x] сделать сайт\n[x] поселить кота\n[ ] выспаться",
+    },
+  };
+
+  const COMMANDS = {
+    help: "список команд",
+    ls: "список файлов (ls -a — со скрытыми)",
+    cd: "сменить папку (cd, cd .., cd ~)",
+    pwd: "текущий путь",
+    cat: "показать файл",
+    tree: "дерево текущей папки",
+    echo: "напечатать текст",
+    whoami: "кто я",
+    neofetch: "система и питомец",
+    clear: "очистить экран",
+    pet: "погладить питомца",
+    woof: "превратить в пса",
+    meow: "вернуть кота",
+    sudo: "...",
+    contact: "как со мной связаться",
+    history: "история команд",
+  };
+
+  const shellEl = document.getElementById("shell");
+  const titleEl = document.querySelector(".term--hero .term__title");
+
+  let cwd = []; // путь относительно ~ (например ["cats"])
+  let inputEl = null;
+  let promptLineEl = null;
+  const history = [];
+  let histPos = 0;
+
+  function nodeAt(parts) {
+    let node = FS;
+    for (const p of parts) {
+      if (node && typeof node === "object" && p in node) node = node[p];
+      else return undefined;
+    }
+    return node;
+  }
+
+  function isDir(node) { return node && typeof node === "object"; }
+
+  function prettyPath(parts) {
+    return parts.length ? "~/" + parts.join("/") : "~";
+  }
+
+  function resolvePath(arg) {
+    // возвращает массив частей или null (неверный путь)
+    let parts = arg.startsWith("/") ? [] : cwd.slice();
+    if (arg === "~" || arg.startsWith("~")) { parts = []; arg = arg.replace(/^~\/?/, ""); }
+    for (const seg of arg.split("/")) {
+      if (seg === "" || seg === ".") continue;
+      if (seg === "..") { parts.pop(); continue; }
+      parts.push(seg);
+    }
+    return parts;
+  }
+
+  function scrollDown() {
+    if (shellEl) shellEl.scrollTop = shellEl.scrollHeight;
+  }
+
+  function addRow(text, cls) {
+    const div = document.createElement("div");
+    div.className = "term__row" + (cls ? " " + cls : "");
+    div.textContent = text; // безопасно: текстовый узел, не HTML
+    shellEl.insertBefore(div, promptLineEl);
+    return div;
+  }
+
+  function echoCommandLine(raw) {
+    const row = document.createElement("div");
+    row.className = "term__row term__row--cmd";
+    const ps = document.createElement("span");
+    ps.className = "term__ps1";
+    ps.appendChild(makePs1());
+    row.appendChild(ps);
+    row.appendChild(document.createTextNode(" " + raw));
+    shellEl.insertBefore(row, promptLineEl);
+  }
+
+  function makePs1() {
+    const frag = document.createDocumentFragment();
+    const u = document.createElement("span");
+    u.className = "term__ps1-user";
+    u.textContent = "egor@dev";
+    const p = document.createElement("span");
+    p.className = "term__ps1-path";
+    p.textContent = ":" + prettyPath(cwd);
+    const t = document.createElement("span");
+    t.className = "term__ps1-tail";
+    t.textContent = "$";
+    frag.append(u, p, t);
+    return frag;
+  }
+
+  function refreshPrompt() {
+    if (!promptLineEl) return;
+    const ps = promptLineEl.querySelector(".term__ps1");
+    ps.textContent = "";
+    ps.appendChild(makePs1());
+    if (titleEl) titleEl.textContent = "egor@dev: " + prettyPath(cwd);
+  }
+
+  const handlers = {
+    help() {
+      addRow("Доступные команды:", "term__row--ok");
+      for (const [name, desc] of Object.entries(COMMANDS)) {
+        addRow("  " + name.padEnd(9) + " - " + desc, "term__row--muted");
+      }
+      addRow("Подсказки: Tab - автодополнение, стрелки вверх/вниз - история.", "term__row--muted");
+    },
+    ls(args) {
+      const showHidden = args.includes("-a");
+      const pathArg = args.find((a) => !a.startsWith("-"));
+      const parts = pathArg ? resolvePath(pathArg) : cwd.slice();
+      const node = nodeAt(parts);
+      if (node === undefined) return addRow("ls: нет такого пути: " + pathArg, "term__row--err");
+      if (!isDir(node)) return addRow(pathArg, "term__file");
+      const names = Object.keys(node).filter((n) => showHidden || !n.startsWith("."));
+      if (!names.length) return addRow("(пусто)", "term__row--muted");
+      names.sort();
+      const row = document.createElement("div");
+      row.className = "term__row";
+      names.forEach((n, i) => {
+        const span = document.createElement("span");
+        const dir = isDir(node[n]);
+        span.className = dir ? "term__dir" : "term__file";
+        span.textContent = dir ? n + "/" : n;
+        row.appendChild(span);
+        if (i < names.length - 1) row.appendChild(document.createTextNode("   "));
+      });
+      shellEl.insertBefore(row, promptLineEl);
+    },
+    cd(args) {
+      const target = args[0];
+      if (!target || target === "~") { cwd = []; return refreshPrompt(); }
+      const parts = resolvePath(target);
+      const node = nodeAt(parts);
+      if (node === undefined) return addRow("cd: нет такой папки: " + target, "term__row--err");
+      if (!isDir(node)) return addRow("cd: это не папка: " + target, "term__row--err");
+      cwd = parts;
+      refreshPrompt();
+    },
+    pwd() { addRow("/home/egor" + (cwd.length ? "/" + cwd.join("/") : "")); },
+    cat(args) {
+      if (!args[0]) return addRow("cat: укажи файл", "term__row--err");
+      const node = nodeAt(resolvePath(args[0]));
+      if (node === undefined) return addRow("cat: нет такого файла: " + args[0], "term__row--err");
+      if (isDir(node)) return addRow("cat: это папка: " + args[0], "term__row--err");
+      addRow(node);
+    },
+    tree() {
+      const node = nodeAt(cwd);
+      addRow(prettyPath(cwd), "term__row--ok");
+      const walk = (n, prefix) => {
+        const keys = Object.keys(n).filter((k) => !k.startsWith("."));
+        keys.forEach((k, i) => {
+          const last = i === keys.length - 1;
+          addRow(prefix + (last ? "└── " : "├── ") + (isDir(n[k]) ? k + "/" : k), "term__row--muted");
+          if (isDir(n[k])) walk(n[k], prefix + (last ? "    " : "│   "));
+        });
+      };
+      if (isDir(node)) walk(node, "");
+    },
+    echo(args) { addRow(args.join(" ")); },
+    whoami() { addRow("egor", "term__row--ok"); },
+    contact() {
+      addRow("telegram : https://t.me/realkaniewest2", "term__row--ok");
+      addRow("email    : isokokluu@gmail.com", "term__row--ok");
+    },
+    neofetch() {
+      const lines = [
+        "        /\\_/\\     egor@dev",
+        "       ( o.o )    -----------",
+        "        > ^ <     ОС: GhostOS (терминальная)",
+        "       /     \\    оболочка: egorsh 1.0",
+        "      ( | | | )   стек: Python, PHP, JS",
+        "       \\_m_m_/    редактор: vim (btw)",
+        "                  питомец: кот (клик по нему!)",
+      ];
+      lines.forEach((l) => addRow(l, "term__row--ok"));
+    },
+    clear() {
+      [...shellEl.querySelectorAll(".term__row")].forEach((r) => r.remove());
+    },
+    history() {
+      history.forEach((h, i) => addRow("  " + (i + 1) + "  " + h, "term__row--muted"));
+    },
+    sudo(args) {
+      if (!args.length) return addRow("usage: sudo <команда>", "term__row--muted");
+      addRow("egor не в файле sudoers. Об инциденте доложено. (шутка)", "term__row--err");
+    },
+    pet() {
+      if (!petApi) return addRow("питомец спит :)", "term__row--muted");
+      if (petApi.isDog()) addRow("пёс виляет хвостом, язык наружу :Р", "term__row--ok");
+      else addRow("кот жмурится и мурлычет... ", "term__row--ok");
+    },
+    woof(_args, raw) {
+      if (petApi && !petApi.isDog()) { petApi.toDog(); addRow("...кот превращается в пса. woof!", "term__row--ok"); }
+      else addRow("он и так пёс. woof!", "term__row--muted");
+    },
+    meow() {
+      if (petApi && petApi.isDog()) { petApi.toCat(); addRow("...пёс снова стал котом. meow!", "term__row--ok"); }
+      else addRow("кот и так на месте. meow!", "term__row--muted");
+    },
+    rm(args) {
+      if (args.includes("-rf") && (args.includes("/") || args.includes("/*"))) {
+        return addRow("ну уж нет :) этот терминал бессмертен.", "term__row--err");
+      }
+      addRow("rm: тут нечего удалять, это витрина.", "term__row--muted");
+    },
+  };
+
+  function runCommand(raw) {
+    const trimmed = raw.trim();
+    echoCommandLine(raw);
+    if (trimmed) {
+      history.push(trimmed);
+      histPos = history.length;
+    }
+    if (!trimmed) return;
+    const tokens = trimmed.split(/\s+/);
+    const cmd = tokens[0].toLowerCase();
+    const args = tokens.slice(1);
+    if (handlers[cmd]) handlers[cmd](args, raw);
+    else addRow(cmd + ": команда не найдена. набери help", "term__row--err");
+    refreshPrompt();
+  }
+
+  function complete() {
+    const val = inputEl.value;
+    const tokens = val.split(/\s+/);
+    const editing = tokens[tokens.length - 1];
+    let pool;
+    if (tokens.length <= 1) {
+      pool = Object.keys(COMMANDS);
+    } else {
+      const node = nodeAt(cwd);
+      pool = isDir(node) ? Object.keys(node) : [];
+    }
+    const matches = pool.filter((n) => n.startsWith(editing));
+    if (matches.length === 1) {
+      tokens[tokens.length - 1] = matches[0];
+      inputEl.value = tokens.join(" ");
+    } else if (matches.length > 1) {
+      addRow(matches.join("   "), "term__row--muted");
+      scrollDown();
+    }
+  }
+
+  function mountTerminal() {
+    if (cursorEl) cursorEl.remove();
+    if (!shellEl) return;
+
+    const hint = document.createElement("div");
+    hint.className = "term__hint";
+    hint.textContent = "это рабочий терминал. набери ";
+    const codeEl = document.createElement("code");
+    codeEl.textContent = "help";
+    hint.appendChild(codeEl);
+    hint.appendChild(document.createTextNode(" и жми Enter."));
+    shellEl.appendChild(hint);
+
+    promptLineEl = document.createElement("div");
+    promptLineEl.className = "term__promptline";
+    const ps = document.createElement("span");
+    ps.className = "term__ps1";
+    ps.appendChild(makePs1());
+    inputEl = document.createElement("input");
+    inputEl.className = "term__input";
+    inputEl.type = "text";
+    inputEl.maxLength = 120;
+    inputEl.autocomplete = "off";
+    inputEl.autocapitalize = "off";
+    inputEl.spellcheck = false;
+    inputEl.setAttribute("aria-label", "Командная строка");
+    promptLineEl.append(ps, inputEl);
+    shellEl.appendChild(promptLineEl);
+
+    inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const v = inputEl.value;
+        inputEl.value = "";
+        runCommand(v);
+        scrollDown();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (histPos > 0) { histPos -= 1; inputEl.value = history[histPos] || ""; }
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        if (histPos < history.length) { histPos += 1; inputEl.value = history[histPos] || ""; }
+      } else if (e.key === "Tab") {
+        e.preventDefault();
+        complete();
+      }
+    });
+
+    shellEl.addEventListener("click", (e) => {
+      if (window.getSelection && String(window.getSelection())) return; // не мешать выделению
+      inputEl.focus();
+    });
+
+    refreshPrompt();
+  }
+
+  /* ===== konami code (bonus) ===== */
+  const konami = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+  let kPos = 0;
+  document.addEventListener("keydown", (e) => {
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    kPos = key === konami[kPos] ? kPos + 1 : (key === konami[0] ? 1 : 0);
+    if (kPos === konami.length) {
+      kPos = 0;
+      if (petApi) petApi.toDog();
+      document.documentElement.classList.add("konami");
+      setTimeout(() => document.documentElement.classList.remove("konami"), 1500);
+    }
+  });
 
   /* ===== reveal on scroll ===== */
   const revealEls = document.querySelectorAll(".reveal");

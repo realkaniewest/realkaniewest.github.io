@@ -1,4 +1,5 @@
 (() => {
+  document.documentElement.classList.add("js");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ===== ascii cat ===== */

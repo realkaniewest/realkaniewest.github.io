@@ -16,15 +16,31 @@
     `    \\_m_m_/${tail}`,
   ];
 
-  const catStand = (legs) => [
-    "     /\\_/\\",
-    "    ( o.o )",
-    "     > ^ <",
-    "    |     |",
-    "    |     |",
-    `    ${legs}`,
-    "",
-  ];
+  // Профильный кот на четырёх лапах. stride=true: лапы в шаге (диагональные
+  // пары, как у настоящего кота), корпус чуть приподнят (боб).
+  const catWalkRight = (stride) => {
+    const back = stride ? "/ \\" : "| |";
+    const front = stride ? "\\ /" : "| |";
+    const rows = [
+      "   (\\            /\\_/\\",
+      "    \\\\___________( o.o )",
+      "     |           |\\ ^ /",
+      `     ${back}         ${front}`,
+    ];
+    return stride ? ["", "", ...rows, ""] : ["", ...rows, "", ""];
+  };
+
+  const catWalkLeft = (stride) => {
+    const front = stride ? "\\ /" : "| |";
+    const back = stride ? "/ \\" : "| |";
+    const rows = [
+      "  /\\_/\\            /)",
+      " ( o.o )___________//",
+      "  \\ ^ /|           |",
+      `   ${front}         ${back}`,
+    ];
+    return stride ? ["", "", ...rows, ""] : ["", ...rows, "", ""];
+  };
 
   const C = {
     idle:  catSit(),
@@ -33,8 +49,10 @@
     pawup: catSit({ paw: true, paws: "| |  " }),
     lick1: catSit({ eyes: "-.o", mouth: "> u <", paw: true, paws: "| |  " }),
     lick2: catSit({ eyes: "-.o", mouth: "> w <", paw: true, paws: "| |  " }),
-    standA: catStand("/\\   /\\"),
-    standB: catStand(" |\\ /| "),
+    walkR0: catWalkRight(false),
+    walkR1: catWalkRight(true),
+    walkL0: catWalkLeft(false),
+    walkL1: catWalkLeft(true),
   };
 
   // Пёс с будкой и миской (хвост виляет, язык всегда наружу)
@@ -55,7 +73,7 @@
     blink: dogScene("~", "-.-"),
   };
 
-  const WALK_END = 20; // на сколько колонок уходит вправо
+  const WALK_END = 12; // на сколько колонок уходит вправо (профиль шире сидячего кота)
   const GLITCH = "#*+%@.";
 
   const catEl = document.getElementById("cat");
@@ -71,21 +89,22 @@
       steps.push([C.pawup, off, 380], [C.idle, off, long ? 1400 : 900], [C.blink, off, 160]);
     };
     const walk = (from, to) => {
-      const dir = to > from ? 2 : -2;
+      const right = to > from;
+      const dir = right ? 2 : -2;
+      const stand = right ? C.walkR0 : C.walkL0;
+      const stride = right ? C.walkR1 : C.walkL1;
+      steps.push([stand, from, 500]); // встал на четыре лапы, пауза
       let leg = false;
-      for (let off = from; dir > 0 ? off < to : off > to; off += dir) {
-        steps.push([leg ? C.standA : C.standB, off, 150]);
+      for (let off = from; right ? off < to : off > to; off += dir) {
+        steps.push([leg ? stride : stand, off, 260]);
         leg = !leg;
       }
+      steps.push([stand, to, 500]); // дошёл, остановился
     };
     lickCycle(0, true);
-    steps.push([C.standA, 0, 350]);
     walk(0, WALK_END);
-    steps.push([C.standB, WALK_END, 350]);
     lickCycle(WALK_END, false);
-    steps.push([C.standA, WALK_END, 350]);
     walk(WALK_END, 0);
-    steps.push([C.standB, 0, 350]);
     return steps;
   }
 

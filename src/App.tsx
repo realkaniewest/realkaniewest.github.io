@@ -1,9 +1,10 @@
 import { Bot, Database, LineChart, ServerCog, ShoppingCart, Terminal } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import DisplayCards from "@/components/ui/display-cards";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Typewriter } from "@/components/ui/typewriter";
 import { CatTerminal } from "@/components/portfolio/CatTerminal";
+import { ReviewsWall } from "@/components/portfolio/ReviewsWall";
 
 const stack = ["Python", "PHP", "JavaScript", "Selenium", "REST API", "Google Sheets API", "OpenCart / OCStore", "Bitrix24", "Telegram-боты", "Linux / VPS", "MySQL / SQLite", "systemd"];
 
@@ -33,6 +34,7 @@ export default function App() {
             <a href="#about">Обо мне</a>
             <a href="#stack">Стек</a>
             <a href="#projects">Проекты</a>
+            <a href="#reviews">Отзывы</a>
             <a href="#contact">Контакты</a>
           </nav>
           <ThemeToggle />
@@ -65,20 +67,40 @@ export default function App() {
           </div>
         </section>
 
-        <section className="section container about-grid" id="about">
-          <div>
+        <section className="section container about-grid reveal-pop" id="about">
+          <div className="about-copy">
             <h2 className="section__title"><span>#</span> Обо мне</h2>
             <p className="section__note">Я беру скучную ручную работу, разбираю её на понятные шаги и превращаю в скрипты, интеграции и сервисы, которые спокойно живут на сервере.</p>
           </div>
-          <div className="gooey-panel" aria-label="Направления работы">
-            <GooeyText
-              texts={["бэкенд", "парсеры", "автоматизация", "интеграции", "сделаем проект лучше"]}
-              morphTime={1.1}
-              cooldownTime={0.7}
-              className="h-28"
-              textClassName="font-display text-4xl text-accent md:text-6xl"
-            />
+          <div className="typewriter-footage" aria-label="Направления работы">
+            <p>
+              <span>делаю </span>
+              <Typewriter
+                text={["интеграции", "парсеры", "автоматизацию", "бэкенд", "CRM-связки"]}
+                speed={70}
+                waitTime={1400}
+                deleteSpeed={36}
+                className="text-accent"
+                cursorChar="_"
+                cursorClassName="text-accent"
+              />
+            </p>
+            <span className="typewriter-footage__line" />
           </div>
+        </section>
+
+        <section className="section container reviews-section reveal-pop" id="reviews">
+          <div className="section-head reviews-head">
+            <div>
+              <h2 className="section__title"><span>#</span> Отзывы</h2>
+              <p className="section__note">Короткая витрина отзывов с Kwork: автоматизации, CRM, парсеры, интерфейсы и доработки.</p>
+            </div>
+            <div className="reviews-count">
+              <strong>6+</strong>
+              <span>положительных</span>
+            </div>
+          </div>
+          <ReviewsWall />
         </section>
 
         <section className="section container" id="stack">
@@ -86,7 +108,7 @@ export default function App() {
           <div className="chips">{stack.map((item) => <span className="chip" key={item}>{item}</span>)}</div>
         </section>
 
-        <section className="section container projects-section" id="projects">
+        <section className="section container projects-section reveal-pop" id="projects">
           <div className="section-head">
             <div>
               <h2 className="section__title"><span>#</span> Проекты</h2>

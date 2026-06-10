@@ -224,7 +224,7 @@
 
   const command = "whoami";
   const output = [
-    "Егор - бэкенд-разработчик",
+    "realkaniewest - бэкенд-разработчик",
     "Python, PHP, парсеры, интеграции, автоматизация",
     "Kwork: рейтинг 5.0, 100% в срок",
   ];
@@ -265,7 +265,7 @@
   // выполнять нечего; весь вывод печатается через textContent (без innerHTML).
   const FS = {
     "about.txt": [
-      "Егор, фриланс-разработчик.",
+      "realkaniewest, фриланс-разработчик.",
       "Бэкенд, парсеры, интеграции, автоматизация.",
       "Превращаю рутину в скрипты, которые тихо работают на сервере.",
     ].join("\n"),
@@ -388,7 +388,7 @@
     const frag = document.createDocumentFragment();
     const u = document.createElement("span");
     u.className = "term__ps1-user";
-    u.textContent = "egor@dev";
+    u.textContent = "realkaniewest@dev";
     const p = document.createElement("span");
     p.className = "term__ps1-path";
     p.textContent = ":" + prettyPath(cwd);
@@ -404,7 +404,7 @@
     const ps = promptLineEl.querySelector(".term__ps1");
     ps.textContent = "";
     ps.appendChild(makePs1());
-    if (titleEl) titleEl.textContent = "egor@dev: " + prettyPath(cwd);
+    if (titleEl) titleEl.textContent = "realkaniewest@dev: " + prettyPath(cwd);
   }
 
   const handlers = {
@@ -447,7 +447,7 @@
       cwd = parts;
       refreshPrompt();
     },
-    pwd() { addRow("/home/egor" + (cwd.length ? "/" + cwd.join("/") : "")); },
+    pwd() { addRow("/home/realkaniewest" + (cwd.length ? "/" + cwd.join("/") : "")); },
     cat(args) {
       if (!args[0]) return addRow("cat: укажи файл", "term__row--err");
       const node = nodeAt(resolvePath(args[0]));
@@ -469,17 +469,17 @@
       if (isDir(node)) walk(node, "");
     },
     echo(args) { addRow(args.join(" ")); },
-    whoami() { addRow("egor", "term__row--ok"); },
+    whoami() { addRow("realkaniewest", "term__row--ok"); },
     contact() {
       addRow("telegram : https://t.me/realkaniewest2", "term__row--ok");
       addRow("email    : isokokluu@gmail.com", "term__row--ok");
     },
     neofetch() {
       const lines = [
-        "        /\\_/\\     egor@dev",
+        "        /\\_/\\     realkaniewest@dev",
         "       ( o.o )    -----------",
         "        > ^ <     ОС: GhostOS (терминальная)",
-        "       /     \\    оболочка: egorsh 1.0",
+        "       /     \\    оболочка: kaniesh 1.0",
         "      ( | | | )   стек: Python, PHP, JS",
         "       \\_m_m_/    редактор: vim (btw)",
         "                  питомец: кот (клик по нему!)",
@@ -494,7 +494,7 @@
     },
     sudo(args) {
       if (!args.length) return addRow("usage: sudo <команда>", "term__row--muted");
-      addRow("egor не в файле sudoers. Об инциденте доложено. (шутка)", "term__row--err");
+      addRow("realkaniewest не в файле sudoers. Об инциденте доложено. (шутка)", "term__row--err");
     },
     pet() {
       if (!petApi) return addRow("питомец спит :)", "term__row--muted");

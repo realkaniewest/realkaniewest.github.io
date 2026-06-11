@@ -17,14 +17,12 @@
       "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
       "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
       "landings.kicker": "// лендинги под задачу", "landings.title": "Какие лендинги я умею делать", "landings.note": "Ниже несколько направлений: меняй кнопками и смотри, как может выглядеть первый экран.",
-      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit", "landings.tabs.terminal": "Terminal",
+      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.cta": "Хочу такой",
       "landings.slides.shader.title": "Сделаю вам такой лендинг", "landings.slides.shader.text": "Тёмный первый экран с живым shader-фоном, сильным оффером и кнопкой заявки.",
       "landings.slides.paths.title": "И такой", "landings.slides.paths.text": "Лёгкий лендинг с плавными линиями, аккуратной анимацией и чистым продуктовым текстом.",
       "landings.slides.orbit.title": "И такой тоже", "landings.slides.orbit.text": "Кинематографичный hero для сервиса, стартапа или автоматизации: глубина, движение, премиальный вайб.",
-      "landings.slides.terminal.title": "И вот такой технический", "landings.slides.terminal.text": "Лендинг в стиле терминала для ботов, парсеров, SaaS-инструментов и dev-продуктов.",
       "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
-      "bit.badge": "QUEST LOG", "bit.title": "маленький цикл заказа", "bit.one.title": "принял заказ", "bit.one.desc": "разобрал задачу и собрал понятное ТЗ", "bit.two.title": "сделал магию", "bit.two.desc": "написал скрипт, проверил, задеплоил", "bit.three.title": "отдал клиенту", "bit.three.desc": "передал инструкцию и рабочий результат", "bit.four.title": "погладил кота", "bit.four.desc": "кот доволен, продакшен спокоен",
       "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
     },
     en: {
@@ -41,14 +39,12 @@
       "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
       "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
       "landings.kicker": "// landing pages for the task", "landings.title": "Landing pages I can build", "landings.note": "Switch the buttons below to preview a few first-screen directions.",
-      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit", "landings.tabs.terminal": "Terminal",
+      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.cta": "I want this",
       "landings.slides.shader.title": "I can build you this landing", "landings.slides.shader.text": "A dark first screen with a live shader-style background, a sharp offer, and a clear request button.",
       "landings.slides.paths.title": "And this one", "landings.slides.paths.text": "A light landing with flowing paths, clean animation, and focused product copy.",
       "landings.slides.orbit.title": "And this one too", "landings.slides.orbit.text": "A cinematic hero for a service, startup, or automation product: depth, motion, and a premium feel.",
-      "landings.slides.terminal.title": "And a technical one", "landings.slides.terminal.text": "A terminal-style landing for bots, parsers, SaaS tools, and developer products.",
       "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
-      "bit.badge": "QUEST LOG", "bit.title": "tiny order loop", "bit.one.title": "accepted order", "bit.one.desc": "understood the task and wrote a clear spec", "bit.two.title": "did the magic", "bit.two.desc": "built the script, tested it, deployed it", "bit.three.title": "gave it back", "bit.three.desc": "sent the working result and instructions", "bit.four.title": "petted the cat", "bit.four.desc": "cat is happy, production is calm",
       "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
     },
   };
@@ -99,7 +95,7 @@
   const landingText = document.getElementById("landingDemoText");
   const setLandingDemo = (name) => {
     if (!landingDemo || !landingTitle || !landingText) return;
-    const safeName = ["shader", "paths", "orbit", "terminal"].includes(name) ? name : "shader";
+    const safeName = ["shader", "paths", "orbit"].includes(name) ? name : "shader";
     landingDemo.className = "landing-demo landing-demo--" + safeName;
     landingButtons.forEach((button) => {
       const active = button.dataset.landingTab === safeName;
@@ -113,6 +109,94 @@
 
   landingButtons.forEach((button) => {
     button.addEventListener("click", () => setLandingDemo(button.dataset.landingTab));
+  });
+
+  function bootLandingCanvas(canvas, mode) {
+    const gl = canvas.getContext("webgl", { antialias: true, alpha: false });
+    if (!gl) return;
+    const vertexShader = "attribute vec2 position; void main(){ gl_Position = vec4(position, 0.0, 1.0); }";
+    const lineShader = `
+      precision highp float;
+      uniform vec2 resolution;
+      uniform float time;
+      void main(void) {
+        vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+        float t = time * 0.05;
+        float lineWidth = 0.002;
+        vec3 color = vec3(0.0);
+        for(int j = 0; j < 3; j++){
+          for(int i = 0; i < 5; i++){
+            color[j] += lineWidth * float(i*i) / abs(fract(t - 0.01 * float(j) + float(i) * 0.01) * 5.0 - length(uv) + mod(uv.x + uv.y, 0.2));
+          }
+        }
+        color = vec3(color.g * 0.7, color.r * 1.35 + color.g * 0.25, color.b * 0.8);
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `;
+    const cloudShader = `
+      precision highp float;
+      uniform vec2 resolution;
+      uniform float time;
+      float rnd(vec2 p){ p=fract(p*vec2(12.9898,78.233)); p+=dot(p,p+34.56); return fract(p.x*p.y); }
+      float noise(vec2 p){ vec2 i=floor(p), f=fract(p), u=f*f*(3.0-2.0*f); float a=rnd(i), b=rnd(i+vec2(1,0)), c=rnd(i+vec2(0,1)), d=rnd(i+1.0); return mix(mix(a,b,u.x),mix(c,d,u.x),u.y); }
+      float fbm(vec2 p){ float t=0.0, a=1.0; mat2 m=mat2(1.0,-0.5,0.2,1.2); for(int i=0;i<5;i++){ t+=a*noise(p); p*=2.0*m; a*=0.5; } return t; }
+      void main(void) {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * resolution.xy) / min(resolution.x, resolution.y);
+        vec2 st = uv * vec2(2.0, 1.0);
+        vec3 col = vec3(0.0);
+        float bg = fbm(vec2(st.x + time * 0.12, -st.y) * 2.0);
+        uv *= 1.0 - 0.25 * (sin(time * 0.2) * 0.5 + 0.5);
+        for(float i=1.0; i<12.0; i++){
+          uv += 0.1 * cos(i * vec2(0.1 + 0.01 * i, 0.8) + i*i + time * 0.5 + 0.1 * uv.x);
+          vec2 p = uv;
+          float d = length(p);
+          col += 0.00135 / d * (cos(sin(i) * vec3(1.0, 2.0, 3.0)) + 1.0);
+          float b = noise(i + p + bg * 1.731);
+          col += 0.002 * b / length(max(p, vec2(b * p.x * 0.02, p.y)));
+          col = mix(col, vec3(bg * 0.05, bg * 0.22, bg * 0.15), d);
+        }
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+    const compile = (type, source) => {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return shader;
+    };
+    const program = gl.createProgram();
+    gl.attachShader(program, compile(gl.VERTEX_SHADER, vertexShader));
+    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, mode === "clouds" ? cloudShader : lineShader));
+    gl.linkProgram(program);
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]), gl.STATIC_DRAW);
+    const position = gl.getAttribLocation(program, "position");
+    const resolution = gl.getUniformLocation(program, "resolution");
+    const time = gl.getUniformLocation(program, "time");
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    const render = (now) => {
+      resize();
+      gl.useProgram(program);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+      gl.uniform2f(resolution, canvas.width, canvas.height);
+      gl.uniform1f(time, now * 0.001);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    };
+    requestAnimationFrame(render);
+  }
+
+  document.querySelectorAll("[data-landing-canvas]").forEach((canvas) => {
+    bootLandingCanvas(canvas, canvas.dataset.landingCanvas);
   });
 
   /* ===== ascii pet (кот, прогулка, секретный пёс) ===== */

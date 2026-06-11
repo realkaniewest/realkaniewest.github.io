@@ -2,6 +2,97 @@
   document.documentElement.classList.add("js");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const translations = {
+    ru: {
+      "nav.home": "Главная", "nav.stack": "Стек", "nav.projects": "Проекты", "nav.process": "Процесс", "nav.contact": "Контакты",
+      "hero.kicker": "// фриланс-разработчик", "hero.title": "Егор", "hero.subtitle": "Бэкенд, парсеры,<br>автоматизация",
+      "hero.lead": "Делаю ботов, парсеры и интеграции, которые тихо работают на сервере и экономят людям часы ручной работы. Довожу до результата: код + деплой + инструкция.",
+      "hero.telegram": "Написать в Telegram",
+      "stats.rating": "рейтинг на Kwork", "stats.ordersValue": "заказы", "stats.orders": "выполнены и оплачены", "stats.time": "сдано вовремя", "stats.repeat": "повторных заказов",
+      "stack.title": "Стек", "projects.title": "Проекты", "projects.note": "Реальные заказы с Kwork. Все работают в продакшене.",
+      "cards.food.title": "Автоматизация закупок сети ресторанов", "cards.food.desc": "Парсер поставщика GFS + заказы Яндекс.Еды автоматически попадают в СКИФ CRM с оплатой. Работает круглосуточно как systemd-сервис.",
+      "cards.b24.title": "Ozon и Wildberries в Битрикс24", "cards.b24.desc": "Заказы с маркетплейсов и статусы доставки синхронизируются с CRM сами, менеджер ничего не переносит руками.",
+      "cards.avito.title": "Парсер Avito для доски объявлений", "cards.avito.desc": "Ежедневный сбор объявлений по 10 категориям, загрузка с фото на сайт, автоодобрение через админку, защита от дублей.",
+      "cards.wb.title": "Аналитика Wildberries в Google Sheets", "cards.wb.desc": "Продажи и остатки подтягиваются в таблицы автоматически, сводные листы обновляются сами.",
+      "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
+      "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
+      "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
+      "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
+    },
+    en: {
+      "nav.home": "Home", "nav.stack": "Stack", "nav.projects": "Projects", "nav.process": "Process", "nav.contact": "Contact",
+      "hero.kicker": "// freelance developer", "hero.title": "Egor", "hero.subtitle": "Backend, parsers,<br>automation",
+      "hero.lead": "I build bots, parsers, and integrations that run quietly on servers and save hours of manual work. I deliver the full result: code + deploy + instructions.",
+      "hero.telegram": "Message on Telegram",
+      "stats.rating": "Kwork rating", "stats.ordersValue": "orders", "stats.orders": "completed and paid", "stats.time": "delivered on time", "stats.repeat": "repeat orders",
+      "stack.title": "Stack", "projects.title": "Projects", "projects.note": "Real Kwork orders. All of them run in production.",
+      "cards.food.title": "Restaurant purchasing automation", "cards.food.desc": "A GFS supplier parser plus Yandex Food orders automatically land in SKIF CRM with payment data. Runs 24/7 as a systemd service.",
+      "cards.b24.title": "Ozon and Wildberries in Bitrix24", "cards.b24.desc": "Marketplace orders and delivery statuses sync with the CRM automatically, so managers do not move data by hand.",
+      "cards.avito.title": "Avito parser for a listing board", "cards.avito.desc": "Daily collection across 10 categories, photo upload to the site, admin approval flow, and duplicate protection.",
+      "cards.wb.title": "Wildberries analytics in Google Sheets", "cards.wb.desc": "Sales and stock data are pulled into spreadsheets automatically, with summary sheets refreshing on their own.",
+      "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
+      "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
+      "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
+      "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
+    },
+  };
+
+  const applyTheme = (theme) => {
+    const safeTheme = theme === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = safeTheme;
+    document.getElementById("themeToggle")?.setAttribute("aria-pressed", String(safeTheme === "dark"));
+    localStorage.setItem("theme", safeTheme);
+  };
+
+  const applyLang = (lang) => {
+    const safeLang = lang === "en" ? "en" : "ru";
+    const dict = translations[safeLang];
+    document.documentElement.lang = safeLang;
+    document.documentElement.dataset.lang = safeLang;
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const text = dict[el.dataset.i18n];
+      if (!text) return;
+      if (text.includes("<br>")) el.innerHTML = text;
+      else el.textContent = text;
+    });
+    const thumb = document.getElementById("langThumb");
+    const ghost = document.getElementById("langGhost");
+    if (thumb) thumb.textContent = safeLang === "ru" ? "RU" : "EN";
+    if (ghost) ghost.textContent = safeLang === "ru" ? "EN" : "RU";
+    document.getElementById("langToggle")?.setAttribute("aria-pressed", String(safeLang === "en"));
+    document.title = safeLang === "ru" ? "Егор — бэкенд, парсеры, автоматизация" : "Egor — backend, parsers, automation";
+    localStorage.setItem("lang", safeLang);
+  };
+
+  applyTheme(localStorage.getItem("theme") || "dark");
+  applyLang(localStorage.getItem("lang") || "ru");
+
+  document.getElementById("themeToggle")?.addEventListener("click", () => {
+    applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+  });
+
+  document.getElementById("langToggle")?.addEventListener("click", () => {
+    applyLang(document.documentElement.dataset.lang === "en" ? "ru" : "en");
+  });
+
+  const tabs = [...document.querySelectorAll(".expandable-tab")];
+  const tabTargets = tabs.map((tab) => document.querySelector(tab.getAttribute("href"))).filter(Boolean);
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((item) => item.classList.remove("is-active"));
+      tab.classList.add("is-active");
+    });
+  });
+  if ("IntersectionObserver" in window && tabTargets.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const id = visible.target.id || "top";
+      tabs.forEach((tab) => tab.classList.toggle("is-active", tab.getAttribute("href") === "#" + id));
+    }, { rootMargin: "-25% 0px -55% 0px", threshold: [0.1, 0.35, 0.6] });
+    tabTargets.forEach((section) => navObserver.observe(section));
+  }
+
   /* ===== ascii pet (кот, прогулка, секретный пёс) ===== */
   const pad = (n) => " ".repeat(Math.max(0, n));
 

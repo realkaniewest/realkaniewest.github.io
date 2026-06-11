@@ -17,6 +17,7 @@
       "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
       "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
       "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
+      "bit.badge": "QUEST LOG", "bit.title": "маленький цикл заказа", "bit.one.title": "принял заказ", "bit.one.desc": "разобрал задачу и собрал понятное ТЗ", "bit.two.title": "сделал магию", "bit.two.desc": "написал скрипт, проверил, задеплоил", "bit.three.title": "отдал клиенту", "bit.three.desc": "передал инструкцию и рабочий результат", "bit.four.title": "погладил кота", "bit.four.desc": "кот доволен, продакшен спокоен",
       "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
     },
     en: {
@@ -33,6 +34,7 @@
       "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
       "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
       "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
+      "bit.badge": "QUEST LOG", "bit.title": "tiny order loop", "bit.one.title": "accepted order", "bit.one.desc": "understood the task and wrote a clear spec", "bit.two.title": "did the magic", "bit.two.desc": "built the script, tested it, deployed it", "bit.three.title": "gave it back", "bit.three.desc": "sent the working result and instructions", "bit.four.title": "petted the cat", "bit.four.desc": "cat is happy, production is calm",
       "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
     },
   };

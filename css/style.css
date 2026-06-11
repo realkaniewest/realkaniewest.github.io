@@ -440,6 +440,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ===== process log ===== */
+.process-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 22px;
+  align-items: start;
+}
+
 .log {
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -452,6 +459,143 @@ a { color: inherit; text-decoration: none; }
 
 .log-line { font-size: 14px; color: var(--text); }
 .log-line__num { color: var(--accent); font-weight: 700; margin-right: 8px; }
+
+.bit-card {
+  position: relative;
+  isolation: isolate;
+  border: 2px solid var(--text);
+  border-radius: 2px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 44%),
+    var(--term);
+  box-shadow:
+    4px 4px 0 var(--accent),
+    8px 8px 0 rgba(0, 0, 0, 0.26);
+  padding: 16px;
+  overflow: hidden;
+}
+
+.bit-card::before,
+.bit-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--accent);
+}
+
+.bit-card::before {
+  width: 8px;
+  height: 8px;
+  top: 10px;
+  left: 10px;
+  box-shadow: 12px 0 0 var(--accent), 24px 0 0 var(--accent);
+}
+
+.bit-card::after {
+  width: 52px;
+  height: 2px;
+  right: 14px;
+  bottom: 14px;
+  opacity: 0.6;
+}
+
+.bit-card__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035), rgba(255,255,255,0.035) 1px, transparent 1px, transparent 5px);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.bit-card__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.bit-card__badge {
+  padding: 4px 7px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.bit-card__hearts {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.bit-card__title {
+  position: relative;
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-size: 15px;
+  line-height: 1.25;
+  text-transform: lowercase;
+}
+
+.bit-steps {
+  position: relative;
+  display: grid;
+  gap: 9px;
+}
+
+.bit-step {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+  padding: 9px;
+}
+
+.bit-step span {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.bit-step strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.bit-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+:root[data-theme="light"] .bit-card {
+  box-shadow:
+    4px 4px 0 var(--accent),
+    8px 8px 0 rgba(37, 99, 235, 0.12);
+}
+
+:root[data-theme="light"] .bit-card__scan {
+  opacity: 0.35;
+}
+
+:root[data-theme="light"] .bit-step span {
+  color: #fff;
+}
 
 /* ===== cta ===== */
 .cta {
@@ -518,6 +662,8 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   }
   .cards { grid-template-columns: 1fr 1fr; }
   .stats__grid { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .bit-card { max-width: 430px; }
 }
 
 @media (max-width: 620px) {

@@ -88,81 +88,11 @@ a { color: inherit; text-decoration: none; }
   animation: blink 1.1s steps(1) infinite;
 }
 
-.site-nav { display: flex; gap: 26px; font-size: 13.5px; }
-.site-nav a { color: var(--muted); transition: color 0.15s; }
-.site-nav a:hover { color: var(--accent); }
-
-.expandable-tabs {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: auto;
-  padding: 4px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: color-mix(in srgb, var(--panel) 88%, transparent);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
-}
-
-.expandable-tab {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  min-width: 34px;
-  min-height: 34px;
-  justify-content: center;
-  border-radius: 11px;
-  color: var(--muted);
-  overflow: hidden;
-  white-space: nowrap;
-  transition:
-    gap 0.35s cubic-bezier(.2,.8,.2,1),
-    padding 0.35s cubic-bezier(.2,.8,.2,1),
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.expandable-tab:hover,
-.expandable-tab.is-active {
-  gap: 8px;
-  padding: 0 13px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.tab-icon {
-  display: grid;
-  flex: none;
-  width: 18px;
-  height: 18px;
-  place-items: center;
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.tab-label {
-  max-width: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-width 0.35s cubic-bezier(.2,.8,.2,1), opacity 0.2s ease;
-}
-
-.expandable-tab:hover .tab-label,
-.expandable-tab.is-active .tab-label {
-  max-width: 110px;
-  opacity: 1;
-}
-
-.tab-separator {
-  width: 1px;
-  height: 24px;
-  background: var(--border);
-}
-
 .header-actions {
   display: flex;
   flex: none;
   gap: 8px;
+  margin-left: auto;
 }
 
 .switch {
@@ -580,12 +510,6 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
     padding-bottom: 10px;
     flex-wrap: wrap;
   }
-  .expandable-tabs {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    overflow-x: auto;
-  }
   .hero {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -598,7 +522,6 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 620px) {
   .cards { grid-template-columns: 1fr; }
-  .site-nav { gap: 6px; font-size: 12.5px; }
   .brand { font-size: 13px; }
   .header-actions { gap: 6px; }
   .switch { width: 58px; }

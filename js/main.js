@@ -75,24 +75,6 @@
     applyLang(document.documentElement.dataset.lang === "en" ? "ru" : "en");
   });
 
-  const tabs = [...document.querySelectorAll(".expandable-tab")];
-  const tabTargets = tabs.map((tab) => document.querySelector(tab.getAttribute("href"))).filter(Boolean);
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      tabs.forEach((item) => item.classList.remove("is-active"));
-      tab.classList.add("is-active");
-    });
-  });
-  if ("IntersectionObserver" in window && tabTargets.length) {
-    const navObserver = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      const id = visible.target.id || "top";
-      tabs.forEach((tab) => tab.classList.toggle("is-active", tab.getAttribute("href") === "#" + id));
-    }, { rootMargin: "-25% 0px -55% 0px", threshold: [0.1, 0.35, 0.6] });
-    tabTargets.forEach((section) => navObserver.observe(section));
-  }
-
   /* ===== ascii pet (кот, прогулка, секретный пёс) ===== */
   const pad = (n) => " ".repeat(Math.max(0, n));
 

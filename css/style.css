@@ -545,7 +545,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .landing-demo__fx--shader {
-  background: #000;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(126,231,135,.95) 0 1px, transparent 2px 16px),
+    radial-gradient(circle at 30% 40%, rgba(126,231,135,.25), transparent 34%),
+    #030508;
+  animation: shader-pulse 9s linear infinite;
+  filter: contrast(1.15);
 }
 
 .landing-demo__canvas {
@@ -555,9 +560,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .landing-demo__fx--paths {
-  background:
-    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 38%),
-    var(--bg);
+  background: #000;
 }
 
 .landing-demo__fx--paths svg {
@@ -718,6 +721,12 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes paths-dash {
   to { stroke-dashoffset: -180; }
+}
+
+@keyframes shader-pulse {
+  0% { background-position: 0 0, 0 0, 0 0; transform: scale(1); }
+  50% { background-position: 24px 46px, 0 0, 0 0; transform: scale(1.04); }
+  100% { background-position: 48px 92px, 0 0, 0 0; transform: scale(1); }
 }
 
 @keyframes orbit-spin {

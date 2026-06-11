@@ -19,8 +19,8 @@
       "landings.kicker": "// лендинги под задачу", "landings.title": "Какие лендинги я умею делать", "landings.note": "Ниже несколько направлений: меняй кнопками и смотри, как может выглядеть первый экран.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.status": "Доступен для новых проектов", "landings.cta": "Поехали",
-      "landings.slides.shader.title": "Дизайн решает всё", "landings.slides.shader.text": "Сильный первый экран с WebGL-фоном, чистым интерфейсом и понятной кнопкой заявки.",
-      "landings.slides.paths.title": "И такой", "landings.slides.paths.text": "Лёгкий лендинг с плавными линиями, аккуратной анимацией и чистым продуктовым текстом.",
+      "landings.slides.shader.title": "Сделаю вам такой лендинг", "landings.slides.shader.text": "Тёмный первый экран с живым shader-фоном, сильным оффером и кнопкой заявки.",
+      "landings.slides.paths.title": "Дизайн решает всё", "landings.slides.paths.text": "Сильный первый экран с WebGL-фоном, чистым интерфейсом и понятной кнопкой заявки.",
       "landings.slides.orbit.title": "И такой тоже", "landings.slides.orbit.text": "Кинематографичный hero для сервиса, стартапа или автоматизации: глубина, движение, премиальный вайб.",
       "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
       "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
@@ -41,8 +41,8 @@
       "landings.kicker": "// landing pages for the task", "landings.title": "Landing pages I can build", "landings.note": "Switch the buttons below to preview a few first-screen directions.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.status": "Available for New Projects", "landings.cta": "Let's Go",
-      "landings.slides.shader.title": "Design is Everything", "landings.slides.shader.text": "Unleashing creativity through bold visuals, clean interfaces, and a clear request button.",
-      "landings.slides.paths.title": "And this one", "landings.slides.paths.text": "A light landing with flowing paths, clean animation, and focused product copy.",
+      "landings.slides.shader.title": "I can build you this landing", "landings.slides.shader.text": "A dark first screen with a live shader-style background, a sharp offer, and a clear request button.",
+      "landings.slides.paths.title": "Design is Everything", "landings.slides.paths.text": "Unleashing creativity through bold visuals, clean interfaces, and a clear request button.",
       "landings.slides.orbit.title": "And this one too", "landings.slides.orbit.text": "A cinematic hero for a service, startup, or automation product: depth, motion, and a premium feel.",
       "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
       "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
@@ -119,6 +119,24 @@
       precision highp float;
       uniform vec2 resolution;
       uniform float time;
+      void main(void) {
+        vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+        float t = time * 0.05;
+        float lineWidth = 0.002;
+        vec3 color = vec3(0.0);
+        for(int j = 0; j < 3; j++){
+          for(int i = 0; i < 5; i++){
+            color[j] += lineWidth * float(i*i) / abs(fract(t - 0.01 * float(j) + float(i) * 0.01) * 5.0 - length(uv) + mod(uv.x + uv.y, 0.2));
+          }
+        }
+        color = vec3(color.g * 0.7, color.r * 1.35 + color.g * 0.25, color.b * 0.8);
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `;
+    const webglShader = `
+      precision highp float;
+      uniform vec2 resolution;
+      uniform float time;
       uniform float xScale;
       uniform float yScale;
       uniform float distortion;
@@ -131,8 +149,7 @@
         float r = 0.05 / abs(p.y + sin((rx + time) * xScale) * yScale);
         float g = 0.05 / abs(p.y + sin((gx + time) * xScale) * yScale);
         float b = 0.05 / abs(p.y + sin((bx + time) * xScale) * yScale);
-        vec3 color = vec3(r * 0.45, g * 1.2, b * 0.72);
-        gl_FragColor = vec4(color, 1.0);
+        gl_FragColor = vec4(r, g, b, 1.0);
       }
     `;
     const cloudShader = `
@@ -168,7 +185,8 @@
     };
     const program = gl.createProgram();
     gl.attachShader(program, compile(gl.VERTEX_SHADER, vertexShader));
-    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, mode === "clouds" ? cloudShader : lineShader));
+    const fragmentSource = mode === "clouds" ? cloudShader : (mode === "webgl" ? webglShader : lineShader);
+    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragmentSource));
     gl.linkProgram(program);
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);

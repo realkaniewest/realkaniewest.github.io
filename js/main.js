@@ -56,6 +56,14 @@
     localStorage.setItem("theme", safeTheme);
   };
 
+  const setLocalizedText = (el, text) => {
+    el.textContent = "";
+    String(text).split("<br>").forEach((part, index) => {
+      if (index > 0) el.appendChild(document.createElement("br"));
+      el.appendChild(document.createTextNode(part));
+    });
+  };
+
   const applyLang = (lang) => {
     const safeLang = lang === "en" ? "en" : "ru";
     const dict = translations[safeLang];
@@ -64,8 +72,7 @@
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const text = dict[el.dataset.i18n];
       if (!text) return;
-      if (text.includes("<br>")) el.innerHTML = text;
-      else el.textContent = text;
+      setLocalizedText(el, text);
     });
     const thumb = document.getElementById("langThumb");
     const ghost = document.getElementById("langGhost");

@@ -16,6 +16,13 @@
       "cards.wb.title": "Аналитика Wildberries в Google Sheets", "cards.wb.desc": "Продажи и остатки подтягиваются в таблицы автоматически, сводные листы обновляются сами.",
       "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
       "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
+      "landings.kicker": "// лендинги под задачу", "landings.title": "Какие лендинги я умею делать", "landings.note": "Ниже несколько направлений: меняй кнопками и смотри, как может выглядеть первый экран.",
+      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit", "landings.tabs.terminal": "Terminal",
+      "landings.badge": "DEMO HERO", "landings.cta": "Хочу такой",
+      "landings.slides.shader.title": "Сделаю вам такой лендинг", "landings.slides.shader.text": "Тёмный первый экран с живым shader-фоном, сильным оффером и кнопкой заявки.",
+      "landings.slides.paths.title": "И такой", "landings.slides.paths.text": "Лёгкий лендинг с плавными линиями, аккуратной анимацией и чистым продуктовым текстом.",
+      "landings.slides.orbit.title": "И такой тоже", "landings.slides.orbit.text": "Кинематографичный hero для сервиса, стартапа или автоматизации: глубина, движение, премиальный вайб.",
+      "landings.slides.terminal.title": "И вот такой технический", "landings.slides.terminal.text": "Лендинг в стиле терминала для ботов, парсеров, SaaS-инструментов и dev-продуктов.",
       "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
       "bit.badge": "QUEST LOG", "bit.title": "маленький цикл заказа", "bit.one.title": "принял заказ", "bit.one.desc": "разобрал задачу и собрал понятное ТЗ", "bit.two.title": "сделал магию", "bit.two.desc": "написал скрипт, проверил, задеплоил", "bit.three.title": "отдал клиенту", "bit.three.desc": "передал инструкцию и рабочий результат", "bit.four.title": "погладил кота", "bit.four.desc": "кот доволен, продакшен спокоен",
       "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
@@ -33,6 +40,13 @@
       "cards.wb.title": "Wildberries analytics in Google Sheets", "cards.wb.desc": "Sales and stock data are pulled into spreadsheets automatically, with summary sheets refreshing on their own.",
       "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
       "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
+      "landings.kicker": "// landing pages for the task", "landings.title": "Landing pages I can build", "landings.note": "Switch the buttons below to preview a few first-screen directions.",
+      "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit", "landings.tabs.terminal": "Terminal",
+      "landings.badge": "DEMO HERO", "landings.cta": "I want this",
+      "landings.slides.shader.title": "I can build you this landing", "landings.slides.shader.text": "A dark first screen with a live shader-style background, a sharp offer, and a clear request button.",
+      "landings.slides.paths.title": "And this one", "landings.slides.paths.text": "A light landing with flowing paths, clean animation, and focused product copy.",
+      "landings.slides.orbit.title": "And this one too", "landings.slides.orbit.text": "A cinematic hero for a service, startup, or automation product: depth, motion, and a premium feel.",
+      "landings.slides.terminal.title": "And a technical one", "landings.slides.terminal.text": "A terminal-style landing for bots, parsers, SaaS tools, and developer products.",
       "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
       "bit.badge": "QUEST LOG", "bit.title": "tiny order loop", "bit.one.title": "accepted order", "bit.one.desc": "understood the task and wrote a clear spec", "bit.two.title": "did the magic", "bit.two.desc": "built the script, tested it, deployed it", "bit.three.title": "gave it back", "bit.three.desc": "sent the working result and instructions", "bit.four.title": "petted the cat", "bit.four.desc": "cat is happy, production is calm",
       "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
@@ -75,6 +89,30 @@
 
   document.getElementById("langToggle")?.addEventListener("click", () => {
     applyLang(document.documentElement.dataset.lang === "en" ? "ru" : "en");
+    const activeLanding = document.querySelector("[data-landing-tab].is-active")?.dataset.landingTab || "shader";
+    setLandingDemo(activeLanding);
+  });
+
+  const landingDemo = document.getElementById("landingDemo");
+  const landingButtons = [...document.querySelectorAll("[data-landing-tab]")];
+  const landingTitle = document.getElementById("landingDemoTitle");
+  const landingText = document.getElementById("landingDemoText");
+  const setLandingDemo = (name) => {
+    if (!landingDemo || !landingTitle || !landingText) return;
+    const safeName = ["shader", "paths", "orbit", "terminal"].includes(name) ? name : "shader";
+    landingDemo.className = "landing-demo landing-demo--" + safeName;
+    landingButtons.forEach((button) => {
+      const active = button.dataset.landingTab === safeName;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+    const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
+    landingTitle.textContent = translations[lang][`landings.slides.${safeName}.title`];
+    landingText.textContent = translations[lang][`landings.slides.${safeName}.text`];
+  };
+
+  landingButtons.forEach((button) => {
+    button.addEventListener("click", () => setLandingDemo(button.dataset.landingTab));
   });
 
   /* ===== ascii pet (кот, прогулка, секретный пёс) ===== */

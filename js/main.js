@@ -1,6 +1,17 @@
 (() => {
   document.documentElement.classList.add("js");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const onReady = (fn) => {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn, { once: true });
+    else fn();
+  };
+
+  onReady(() => requestAnimationFrame(() => document.documentElement.classList.add("is-loaded")));
+
+  const headerEl = document.querySelector(".site-header");
+  const syncHeaderState = () => headerEl?.classList.toggle("is-scrolled", window.scrollY > 8);
+  syncHeaderState();
+  window.addEventListener("scroll", syncHeaderState, { passive: true });
 
   const translations = {
     ru: {
@@ -204,15 +215,27 @@
     const xScale = gl.getUniformLocation(program, "xScale");
     const yScale = gl.getUniformLocation(program, "yScale");
     const distortion = gl.getUniformLocation(program, "distortion");
+    let rafId = 0;
+    let isVisible = false;
+    let isRunning = false;
+    let needsResize = true;
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
-      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      const nextWidth = Math.max(1, Math.floor(rect.width * dpr));
+      const nextHeight = Math.max(1, Math.floor(rect.height * dpr));
+      if (canvas.width === nextWidth && canvas.height === nextHeight) return;
+      canvas.width = nextWidth;
+      canvas.height = nextHeight;
       gl.viewport(0, 0, canvas.width, canvas.height);
     };
     const render = (now) => {
-      resize();
+      if (!isRunning) return;
+      if (needsResize) {
+        resize();
+        needsResize = false;
+      }
       gl.useProgram(program);
       gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
       gl.enableVertexAttribArray(position);
@@ -223,9 +246,47 @@
       if (yScale) gl.uniform1f(yScale, 0.5);
       if (distortion) gl.uniform1f(distortion, 0.05);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      requestAnimationFrame(render);
+      if (!reduceMotion) rafId = requestAnimationFrame(render);
     };
-    requestAnimationFrame(render);
+
+    const start = () => {
+      if (isRunning || document.hidden || (!isVisible && !reduceMotion)) return;
+      isRunning = true;
+      rafId = requestAnimationFrame(render);
+    };
+    const stop = () => {
+      isRunning = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+    };
+    const updateVisibility = (visible) => {
+      isVisible = visible;
+      if (visible) start();
+      else stop();
+    };
+
+    const resizeObserver = "ResizeObserver" in window ? new ResizeObserver(() => {
+      needsResize = true;
+      if (!isRunning && isVisible) start();
+    }) : null;
+    resizeObserver?.observe(canvas);
+    window.addEventListener("resize", () => {
+      needsResize = true;
+    }, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else if (isVisible || reduceMotion) start();
+    });
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      isVisible = true;
+      start();
+    } else {
+      const canvasIo = new IntersectionObserver((entries) => {
+        updateVisibility(entries.some((entry) => entry.isIntersecting));
+      }, { rootMargin: "220px 0px", threshold: 0.01 });
+      canvasIo.observe(canvas);
+    }
   }
 
   document.querySelectorAll("[data-landing-canvas]").forEach((canvas) => {

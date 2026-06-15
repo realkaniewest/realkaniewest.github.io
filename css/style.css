@@ -36,6 +36,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 84px;
 }
 
 body {
@@ -48,6 +49,25 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(126, 231, 135, 0.08), transparent 26rem),
+    radial-gradient(circle at 86% 28%, rgba(108, 182, 255, 0.07), transparent 24rem);
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+html.is-loaded body::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 :root[data-theme="light"] body {
@@ -70,6 +90,13 @@ a { color: inherit; text-decoration: none; }
   background: rgba(11, 14, 20, 0.82);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-soft);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(11, 14, 20, 0.94);
+  border-color: var(--border);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
 }
 
 .site-header__inner {
@@ -348,6 +375,8 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--border-soft);
   background: var(--bg-raise);
   padding: 38px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 180px;
 }
 
 .stats__grid {
@@ -370,7 +399,11 @@ a { color: inherit; text-decoration: none; }
 .stat__label { color: var(--muted); font-size: 13px; margin-top: 6px; }
 
 /* ===== sections ===== */
-.section { padding: 72px 0 8px; }
+.section {
+  padding: 72px 0 8px;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
+}
 
 .section__title {
   font-family: var(--display);
@@ -411,6 +444,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+  will-change: transform;
 }
 
 .card:hover {
@@ -776,6 +810,8 @@ a { color: inherit; text-decoration: none; }
     var(--bg-raise);
   padding: 84px 0 92px;
   text-align: center;
+  content-visibility: auto;
+  contain-intrinsic-size: 360px;
 }
 
 .cta__prompt { color: var(--accent); font-size: 15px; margin-bottom: 14px; }
@@ -803,17 +839,93 @@ a { color: inherit; text-decoration: none; }
 /* ===== reveal (только при включённом JS: html.js ставит main.js) ===== */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  filter: blur(10px);
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  transition:
+    opacity 0.8s cubic-bezier(.2, .8, .2, 1),
+    filter 0.8s cubic-bezier(.2, .8, .2, 1),
+    transform 0.8s cubic-bezier(.2, .8, .2, 1);
 }
-html.js .reveal.is-visible { opacity: 1; transform: none; }
+
+html.js .reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+html.js .hero__text > *,
+html.js .hero__term,
+html.js .cards > *,
+html.js .chips > *,
+html.js .stats__grid > *,
+html.js .log-line,
+html.js .cta__inner > *,
+html.js .landing-lab > * {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 0.72s cubic-bezier(.2, .8, .2, 1),
+    transform 0.72s cubic-bezier(.2, .8, .2, 1);
+}
+
+html.is-loaded .hero__text > *,
+html.is-loaded .hero__term,
+html.js .reveal.is-visible .cards > *,
+html.js .reveal.is-visible .chips > *,
+html.js .reveal.is-visible .stats__grid > *,
+html.js .reveal.is-visible .log-line,
+html.js .reveal.is-visible .cta__inner > *,
+html.js .reveal.is-visible .landing-lab > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+html.is-loaded .hero__text > :nth-child(1) { transition-delay: 0.08s; }
+html.is-loaded .hero__text > :nth-child(2) { transition-delay: 0.16s; }
+html.is-loaded .hero__text > :nth-child(3) { transition-delay: 0.24s; }
+html.is-loaded .hero__text > :nth-child(4) { transition-delay: 0.32s; }
+html.is-loaded .hero__text > :nth-child(5) { transition-delay: 0.4s; }
+html.is-loaded .hero__term { transition-delay: 0.28s; }
+
+html.js .reveal.is-visible .stats__grid > :nth-child(2),
+html.js .reveal.is-visible .cards > :nth-child(2),
+html.js .reveal.is-visible .chips > :nth-child(2),
+html.js .reveal.is-visible .log-line:nth-child(2) { transition-delay: 0.06s; }
+html.js .reveal.is-visible .stats__grid > :nth-child(3),
+html.js .reveal.is-visible .cards > :nth-child(3),
+html.js .reveal.is-visible .chips > :nth-child(3),
+html.js .reveal.is-visible .log-line:nth-child(3) { transition-delay: 0.12s; }
+html.js .reveal.is-visible .stats__grid > :nth-child(4),
+html.js .reveal.is-visible .cards > :nth-child(4),
+html.js .reveal.is-visible .chips > :nth-child(4),
+html.js .reveal.is-visible .log-line:nth-child(4) { transition-delay: 0.18s; }
+html.js .reveal.is-visible .cards > :nth-child(5),
+html.js .reveal.is-visible .chips > :nth-child(5) { transition-delay: 0.24s; }
+html.js .reveal.is-visible .cards > :nth-child(6),
+html.js .reveal.is-visible .chips > :nth-child(6) { transition-delay: 0.3s; }
+html.js .reveal.is-visible .landing-lab > :nth-child(2) { transition-delay: 0.1s; }
+html.js .reveal.is-visible .landing-lab > :nth-child(3) { transition-delay: 0.18s; }
 
 /* ===== reduced motion ===== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .cursor, .brand__cursor { animation: none; }
-  html.js .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .card, .chip { transition: none; }
+  body::before,
+  html.js .reveal,
+  html.js .hero__text > *,
+  html.js .hero__term,
+  html.js .cards > *,
+  html.js .chips > *,
+  html.js .stats__grid > *,
+  html.js .log-line,
+  html.js .cta__inner > *,
+  html.js .landing-lab > * {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+  .btn, .card, .chip, .site-header { transition: none; }
 }
 
 /* ===== responsive ===== */

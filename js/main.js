@@ -24,7 +24,7 @@
 
   const translations = {
     ru: {
-      "nav.home": "Главная", "nav.stack": "Стек", "nav.router": "Разбор", "nav.projects": "Проекты", "nav.services": "Услуги", "nav.process": "Процесс", "nav.contact": "Контакты",
+      "nav.home": "Главная", "nav.stack": "Стек", "nav.router": "Разбор", "nav.brief": "Бриф", "nav.projects": "Проекты", "nav.services": "Услуги", "nav.faq": "FAQ", "nav.process": "Процесс", "nav.contact": "Контакты",
       "hero.kicker": "// фриланс-разработчик", "hero.title": "realkaniewest", "hero.subtitle": "Бэкенд, парсеры,<br>автоматизация",
       "hero.lead": "Делаю ботов, парсеры и интеграции, которые тихо работают на сервере и экономят людям часы ручной работы. Довожу до результата: код + деплой + инструкция.",
       "hero.telegram": "Написать в Telegram",
@@ -41,17 +41,37 @@
       "router.kicker": "// быстрый разбор", "router.title": "Выберите свою задачу", "router.note": "Мини-консоль показывает, что обычно входит в такую работу, без завышенных обещаний и тумана.",
       "router.tabs.parser": "парсер", "router.tabs.crm": "crm", "router.tabs.bot": "бот", "router.tabs.vps": "vps",
       "router.output": "на выходе", "router.stack": "стек", "router.brief": "что прислать", "router.cta": "обсудить такую задачу",
+      "brief.kicker": "// заявка без воды", "brief.title": "Соберите короткий бриф", "brief.note": "Выберите пару пунктов, сайт соберет сообщение, которое можно скопировать и отправить в Telegram.",
+      "brief.fields.task": "задача", "brief.fields.source": "источник", "brief.fields.output": "результат", "brief.fields.tempo": "режим",
+      "brief.options.task.parser": "парсер или сбор данных", "brief.options.task.crm": "интеграция с CRM", "brief.options.task.bot": "telegram бот", "brief.options.task.vps": "запуск на VPS",
+      "brief.options.source.site": "сайт или каталог", "brief.options.source.marketplace": "маркетплейс", "brief.options.source.crm": "CRM или админка", "brief.options.source.sheet": "google sheets",
+      "brief.options.output.sheets": "таблица", "brief.options.output.database": "база данных", "brief.options.output.telegram": "telegram уведомления", "brief.options.output.crm": "CRM сделка или заказ",
+      "brief.options.tempo.once": "разово", "brief.options.tempo.daily": "каждый день", "brief.options.tempo.hourly": "каждый час", "brief.options.tempo.service": "как постоянный сервис",
+      "brief.status.ready": "готово к отправке", "brief.status.copied": "скопировано", "brief.status.copyFail": "скопируйте вручную",
+      "brief.copy": "Скопировать бриф", "brief.telegram": "Открыть Telegram",
       "services.title": "Что можно заказать", "services.note": "Не просто код ради кода, а маленькие системы, которые закрывают понятную бизнес задачу.",
       "services.parser.title": "Парсеры и сбор данных", "services.parser.text": "Соберу данные с сайтов, маркетплейсов или кабинетов и аккуратно сложу их в таблицу, CRM или базу.",
       "services.crm.title": "Интеграции с CRM", "services.crm.text": "Свяжу сайт, заказы, оплату, Telegram, Bitrix24, OCStore или Google Sheets в один рабочий процесс.",
       "services.bot.title": "Боты и автоматизация", "services.bot.text": "Сделаю Telegram бота, сервис на VPS или скрипт, который работает по расписанию и не требует ручного запуска.",
       "services.parser.meta": "на выходе: csv, sheets или база", "services.crm.meta": "на выходе: связка без ручного переноса", "services.bot.meta": "на выходе: запуск и инструкция",
+      "formats.kicker": "// форматы работы", "formats.title": "Можно начать маленько", "formats.note": "Не обязательно сразу заказывать большую систему, можно начать с проверки идеи или маленького рабочего скрипта.",
+      "formats.audit.title": "разбор задачи", "formats.audit.text": "смотрю источник данных, ограничения, доступы и предлагаю безопасный путь реализации",
+      "formats.audit.one": "что реально автоматизировать", "formats.audit.two": "какие есть риски", "formats.audit.three": "какой нужен минимальный результат",
+      "formats.build.title": "рабочий скрипт", "formats.build.text": "делаю понятный инструмент под одну задачу, который можно запустить и проверить на реальных данных",
+      "formats.build.one": "код под задачу", "formats.build.two": "выгрузка результата", "formats.build.three": "инструкция по запуску",
+      "formats.service.title": "боевой сервис", "formats.service.text": "выношу скрипт на VPS, добавляю запуск по расписанию, логи и базовую поддержку после сдачи",
+      "formats.service.one": "systemd или cron", "formats.service.two": "логи и перезапуск", "formats.service.three": "передача инструкции",
       "cards.food.title": "Автоматизация закупок сети ресторанов", "cards.food.desc": "Парсер поставщика GFS + заказы Яндекс.Еды автоматически попадают в СКИФ CRM с оплатой. Работает круглосуточно как systemd-сервис.",
       "cards.b24.title": "Ozon и Wildberries в Битрикс24", "cards.b24.desc": "Заказы с маркетплейсов и статусы доставки синхронизируются с CRM сами, менеджер ничего не переносит руками.",
       "cards.avito.title": "Парсер Avito для доски объявлений", "cards.avito.desc": "Ежедневный сбор объявлений по 10 категориям, загрузка с фото на сайт, автоодобрение через админку, защита от дублей.",
       "cards.wb.title": "Аналитика Wildberries в Google Sheets", "cards.wb.desc": "Продажи и остатки подтягиваются в таблицы автоматически, сводные листы обновляются сами.",
       "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
       "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
+      "proof.kicker": "// проверяемый результат", "proof.title": "Как понять что работа готова", "proof.note": "Для каждой задачи заранее выбирается простой способ проверки, чтобы финал был не на ощущениях.",
+      "proof.parser.title": "данные сходятся", "proof.parser.text": "есть пример входа и выхода, дубли не плодятся, результат можно открыть и проверить",
+      "proof.crm.title": "заявка доходит", "proof.crm.text": "тестовый заказ проходит весь путь, статусы видны, ошибка не теряется молча",
+      "proof.bot.title": "сценарии отвечают", "proof.bot.text": "команды, уведомления и права проверены на понятных тестовых действиях",
+      "proof.vps.title": "сервис переживает перезапуск", "proof.vps.text": "systemd или cron запускает задачу, логи доступны, инструкция не требует угадывать",
       "landings.kicker": "// лендинги под задачу", "landings.title": "Какие лендинги я умею делать", "landings.note": "Ниже несколько направлений: меняй кнопками и смотри, как может выглядеть первый экран.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.status": "Доступен для новых проектов", "landings.cta": "Поехали",
@@ -63,12 +83,21 @@
       "trust.one.kicker": "01", "trust.one.title": "сначала ограничения", "trust.one.text": "до старта проверяю, есть ли API, доступы, лимиты, капчи и риск блокировок",
       "trust.two.kicker": "02", "trust.two.title": "без опасных фокусов", "trust.two.text": "токены, пароли и приватные данные не зашиваются в публичный код",
       "trust.three.kicker": "03", "trust.three.title": "после сдачи понятно", "trust.three.text": "оставляю инструкцию, как запустить, где смотреть логи и что делать при сбое",
+      "limits.kicker": "// честные рамки", "limits.title": "Что проговариваю до старта",
+      "limits.access.title": "доступы отдельно от кода", "limits.access.text": "пароли, токены и ключи не попадают в публичный репозиторий и не лежат в html",
+      "limits.risk.title": "лимиты и антиботы обсуждаем сразу", "limits.risk.text": "если сайт защищен капчей или правилами, сначала выбираем безопасный способ работы",
+      "limits.scope.title": "результат фиксируем словами", "limits.scope.text": "до разработки понятно, какие данные получаем, куда кладем и как проверяем готовность",
+      "faq.kicker": "// частые вопросы", "faq.title": "Перед тем как написать",
+      "faq.api.q": "если у сервиса нет API, это возможно?", "faq.api.a": "иногда да, через парсинг или браузерную автоматизацию, но сначала проверяю правила, капчи и риск блокировок",
+      "faq.access.q": "нужно ли сразу давать доступы?", "faq.access.a": "нет, сначала можно обсудить задачу на примерах, доступы нужны только когда понятен безопасный план работы",
+      "faq.support.q": "что будет после сдачи?", "faq.support.a": "передаю инструкцию, объясняю где смотреть логи и могу отдельно договориться о поддержке",
+      "faq.small.q": "можно начать с маленькой задачи?", "faq.small.a": "да, часто лучше начать с минимального скрипта или разбора, а потом расширять если результат полезен",
       "cta.prompt": "$ есть задача?", "cta.title": "Напишите - обсудим",
       "cta.brief.one": "ссылка на сайт или сервис", "cta.brief.two": "что должно получиться", "cta.brief.three": "куда отдавать результат",
       "footer.copy": "(c) realkaniewest, 2026",
     },
     en: {
-      "nav.home": "Home", "nav.stack": "Stack", "nav.router": "Router", "nav.projects": "Projects", "nav.services": "Services", "nav.process": "Process", "nav.contact": "Contact",
+      "nav.home": "Home", "nav.stack": "Stack", "nav.router": "Router", "nav.brief": "Brief", "nav.projects": "Projects", "nav.services": "Services", "nav.faq": "FAQ", "nav.process": "Process", "nav.contact": "Contact",
       "hero.kicker": "// freelance developer", "hero.title": "realkaniewest", "hero.subtitle": "Backend, parsers,<br>automation",
       "hero.lead": "I build bots, parsers, and integrations that run quietly on servers and save hours of manual work. I deliver the full result: code + deploy + instructions.",
       "hero.telegram": "Message on Telegram",
@@ -85,17 +114,37 @@
       "router.kicker": "// quick task router", "router.title": "Choose your task", "router.note": "A small console shows what is usually included, without inflated promises or fog.",
       "router.tabs.parser": "parser", "router.tabs.crm": "crm", "router.tabs.bot": "bot", "router.tabs.vps": "vps",
       "router.output": "output", "router.stack": "stack", "router.brief": "what to send", "router.cta": "discuss this task",
+      "brief.kicker": "// no-fluff request", "brief.title": "Build a short brief", "brief.note": "Pick a few options and the site creates a message you can copy and send in Telegram.",
+      "brief.fields.task": "task", "brief.fields.source": "source", "brief.fields.output": "result", "brief.fields.tempo": "mode",
+      "brief.options.task.parser": "parser or data collection", "brief.options.task.crm": "CRM integration", "brief.options.task.bot": "telegram bot", "brief.options.task.vps": "VPS launch",
+      "brief.options.source.site": "website or catalog", "brief.options.source.marketplace": "marketplace", "brief.options.source.crm": "CRM or admin panel", "brief.options.source.sheet": "google sheets",
+      "brief.options.output.sheets": "spreadsheet", "brief.options.output.database": "database", "brief.options.output.telegram": "telegram notifications", "brief.options.output.crm": "CRM deal or order",
+      "brief.options.tempo.once": "one time", "brief.options.tempo.daily": "daily", "brief.options.tempo.hourly": "hourly", "brief.options.tempo.service": "as a permanent service",
+      "brief.status.ready": "ready to send", "brief.status.copied": "copied", "brief.status.copyFail": "copy manually",
+      "brief.copy": "Copy brief", "brief.telegram": "Open Telegram",
       "services.title": "What I can build", "services.note": "Not code for the sake of code, but small systems that solve a clear business task.",
       "services.parser.title": "Parsers and data collection", "services.parser.text": "I collect data from websites, marketplaces, and dashboards, then send it to tables, CRM, or databases.",
       "services.crm.title": "CRM integrations", "services.crm.text": "I connect sites, orders, payments, Telegram, Bitrix24, OCStore, and Google Sheets into one working flow.",
       "services.bot.title": "Bots and automation", "services.bot.text": "I build Telegram bots, VPS services, and scheduled scripts that do not need manual launching.",
       "services.parser.meta": "output: csv, sheets, or database", "services.crm.meta": "output: no manual transfer", "services.bot.meta": "output: launch and instructions",
+      "formats.kicker": "// work formats", "formats.title": "You can start small", "formats.note": "You do not need to order a large system right away, we can start with idea validation or a small working script.",
+      "formats.audit.title": "task review", "formats.audit.text": "I check the data source, limits, access, and suggest a safe implementation path",
+      "formats.audit.one": "what can really be automated", "formats.audit.two": "what risks exist", "formats.audit.three": "what minimum result is needed",
+      "formats.build.title": "working script", "formats.build.text": "I build a clear tool for one task that can be launched and checked on real data",
+      "formats.build.one": "task focused code", "formats.build.two": "result export", "formats.build.three": "launch instructions",
+      "formats.service.title": "production service", "formats.service.text": "I move the script to VPS, add scheduled launch, logs, and basic support after delivery",
+      "formats.service.one": "systemd or cron", "formats.service.two": "logs and restart", "formats.service.three": "handoff instructions",
       "cards.food.title": "Restaurant purchasing automation", "cards.food.desc": "A GFS supplier parser plus Yandex Food orders automatically land in SKIF CRM with payment data. Runs 24/7 as a systemd service.",
       "cards.b24.title": "Ozon and Wildberries in Bitrix24", "cards.b24.desc": "Marketplace orders and delivery statuses sync with the CRM automatically, so managers do not move data by hand.",
       "cards.avito.title": "Avito parser for a listing board", "cards.avito.desc": "Daily collection across 10 categories, photo upload to the site, admin approval flow, and duplicate protection.",
       "cards.wb.title": "Wildberries analytics in Google Sheets", "cards.wb.desc": "Sales and stock data are pulled into spreadsheets automatically, with summary sheets refreshing on their own.",
       "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
       "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
+      "proof.kicker": "// verifiable result", "proof.title": "How we know it is ready", "proof.note": "For each task, a simple verification method is picked up front, so the finish is not based on vibes.",
+      "proof.parser.title": "data matches", "proof.parser.text": "there is an input and output example, duplicates do not grow, and the result can be opened and checked",
+      "proof.crm.title": "request arrives", "proof.crm.text": "a test order passes the full path, statuses are visible, and errors are not silent",
+      "proof.bot.title": "flows respond", "proof.bot.text": "commands, notifications, and permissions are checked with clear test actions",
+      "proof.vps.title": "service survives restart", "proof.vps.text": "systemd or cron launches the task, logs are available, and instructions do not require guessing",
       "landings.kicker": "// landing pages for the task", "landings.title": "Landing pages I can build", "landings.note": "Switch the buttons below to preview a few first-screen directions.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
       "landings.badge": "DEMO HERO", "landings.status": "Available for New Projects", "landings.cta": "Let's Go",
@@ -107,6 +156,15 @@
       "trust.one.kicker": "01", "trust.one.title": "limits first", "trust.one.text": "before starting, I check API access, credentials, limits, captchas, and blocking risks",
       "trust.two.kicker": "02", "trust.two.title": "no dangerous tricks", "trust.two.text": "tokens, passwords, and private data are not hardcoded into public code",
       "trust.three.kicker": "03", "trust.three.title": "clear after delivery", "trust.three.text": "I leave instructions for launch, logs, and what to do if something fails",
+      "limits.kicker": "// honest boundaries", "limits.title": "What I clarify before starting",
+      "limits.access.title": "access stays outside code", "limits.access.text": "passwords, tokens, and keys do not go into a public repository or html",
+      "limits.risk.title": "limits and antibot first", "limits.risk.text": "if a site has captcha or rules, we choose a safe way to work first",
+      "limits.scope.title": "result is written down", "limits.scope.text": "before development, it is clear what data we get, where it goes, and how readiness is checked",
+      "faq.kicker": "// frequent questions", "faq.title": "Before you message",
+      "faq.api.q": "is it possible if the service has no API?", "faq.api.a": "sometimes yes, through parsing or browser automation, but first I check rules, captchas, and blocking risk",
+      "faq.access.q": "do I need to give access immediately?", "faq.access.a": "no, we can first discuss the task on examples, access is needed only after a safe plan is clear",
+      "faq.support.q": "what happens after delivery?", "faq.support.a": "I hand off instructions, explain where to check logs, and can agree on support separately",
+      "faq.small.q": "can we start with a small task?", "faq.small.a": "yes, often it is better to start with a minimal script or review, then expand if the result is useful",
       "cta.prompt": "$ got a task?", "cta.title": "Send it - let's discuss",
       "cta.brief.one": "link to site or service", "cta.brief.two": "desired result", "cta.brief.three": "where the output should go",
       "footer.copy": "(c) realkaniewest, 2026",
@@ -160,7 +218,87 @@
     setLandingDemo(activeLanding);
     const activeRoute = document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "parser";
     setTaskRoute(activeRoute);
+    updateBrief();
   });
+
+  const briefSelects = {
+    task: document.getElementById("briefTask"),
+    source: document.getElementById("briefSource"),
+    output: document.getElementById("briefOutput"),
+    tempo: document.getElementById("briefTempo"),
+  };
+  const briefPreview = document.getElementById("briefPreview");
+  const briefStatus = document.getElementById("briefStatus");
+  const copyBriefButton = document.getElementById("copyBrief");
+
+  const briefLabels = {
+    ru: {
+      intro: "Привет, хочу обсудить задачу",
+      task: "задача",
+      source: "источник",
+      output: "результат",
+      tempo: "режим",
+      context: "контекст",
+      contextText: "могу прислать ссылку, пример результата и доступы после согласования",
+      taskValues: { parser: "парсер или сбор данных", crm: "интеграция с CRM", bot: "telegram бот", vps: "запуск на VPS" },
+      sourceValues: { site: "сайт или каталог", marketplace: "маркетплейс", crm: "CRM или админка", sheet: "google sheets" },
+      outputValues: { sheets: "таблица", database: "база данных", telegram: "telegram уведомления", crm: "CRM сделка или заказ" },
+      tempoValues: { once: "разово", daily: "каждый день", hourly: "каждый час", service: "как постоянный сервис" },
+    },
+    en: {
+      intro: "Hi, I want to discuss a task",
+      task: "task",
+      source: "source",
+      output: "result",
+      tempo: "mode",
+      context: "context",
+      contextText: "I can send a link, expected output example, and access after agreement",
+      taskValues: { parser: "parser or data collection", crm: "CRM integration", bot: "telegram bot", vps: "VPS launch" },
+      sourceValues: { site: "website or catalog", marketplace: "marketplace", crm: "CRM or admin panel", sheet: "google sheets" },
+      outputValues: { sheets: "spreadsheet", database: "database", telegram: "telegram notifications", crm: "CRM deal or order" },
+      tempoValues: { once: "one time", daily: "daily", hourly: "hourly", service: "as a permanent service" },
+    },
+  };
+
+  function getBriefText() {
+    const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
+    const labels = briefLabels[lang];
+    const task = briefSelects.task?.value || "parser";
+    const source = briefSelects.source?.value || "site";
+    const output = briefSelects.output?.value || "sheets";
+    const tempo = briefSelects.tempo?.value || "once";
+    return [
+      labels.intro,
+      `${labels.task}: ${labels.taskValues[task]}`,
+      `${labels.source}: ${labels.sourceValues[source]}`,
+      `${labels.output}: ${labels.outputValues[output]}`,
+      `${labels.tempo}: ${labels.tempoValues[tempo]}`,
+      `${labels.context}: ${labels.contextText}`,
+    ].join("\n");
+  }
+
+  function updateBrief() {
+    if (!briefPreview) return;
+    briefPreview.textContent = getBriefText();
+    const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
+    if (briefStatus) briefStatus.textContent = translations[lang]["brief.status.ready"];
+  }
+
+  Object.values(briefSelects).forEach((select) => {
+    select?.addEventListener("change", updateBrief);
+  });
+
+  copyBriefButton?.addEventListener("click", async () => {
+    const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
+    try {
+      await navigator.clipboard.writeText(getBriefText());
+      if (briefStatus) briefStatus.textContent = translations[lang]["brief.status.copied"];
+    } catch (_error) {
+      if (briefStatus) briefStatus.textContent = translations[lang]["brief.status.copyFail"];
+      briefPreview?.focus();
+    }
+  });
+  updateBrief();
 
   const taskRouteData = {
     ru: {
@@ -724,11 +862,40 @@
       "bot    : заявки, уведомления, простые панели",
       "vps    : запуск скрипта как сервиса",
     ].join("\n"),
+    "brief-template.txt": [
+      "Привет, хочу обсудить задачу",
+      "задача: парсер или интеграция",
+      "источник: сайт, CRM, маркетплейс или таблица",
+      "результат: таблица, база, Telegram или CRM",
+      "режим: разово, по расписанию или как сервис",
+    ].join("\n"),
+    "limits.txt": [
+      "доступы не храню в публичном коде",
+      "лимиты, капчи и правила обсуждаем до старта",
+      "готовность фиксируем проверяемым результатом",
+    ].join("\n"),
     "services.txt": [
       "parser   : сбор данных, каталоги, маркетплейсы, кабинеты",
       "crm      : Bitrix24, OCStore, Google Sheets, оплаты, статусы",
       "bot      : Telegram, уведомления, заявки, простые панели",
       "deploy   : VPS, systemd, инструкции, поддержка после сдачи",
+    ].join("\n"),
+    "formats.txt": [
+      "audit   : быстро понять риски, доступы и минимальный результат",
+      "build   : сделать рабочий скрипт под одну задачу",
+      "service : вынести на VPS, добавить расписание, логи и инструкцию",
+    ].join("\n"),
+    "proof.txt": [
+      "parser : вход и выход совпадают, дублей нет",
+      "crm    : тестовый заказ доходит и получает статус",
+      "bot    : команды и уведомления проверены",
+      "vps    : сервис запускается после перезапуска",
+    ].join("\n"),
+    "faq.txt": [
+      "нет API       : сначала проверяем правила и риски",
+      "доступы       : не нужны до понятного плана",
+      "после сдачи   : инструкция, логи, поддержка по договоренности",
+      "малый старт   : можно начать с аудита или маленького скрипта",
     ].join("\n"),
     "contact.txt": [
       "telegram : https://t.me/realkaniewest2",
@@ -777,6 +944,11 @@
     whoami: "кто я",
     neofetch: "система и питомец",
     route: "быстрый разбор задач",
+    briefgen: "собрать текст заявки",
+    limits: "рамки работы",
+    formats: "форматы работы",
+    proof: "как проверяется готовность",
+    faq: "частые вопросы",
     services: "что можно заказать",
     brief: "что прислать для оценки",
     clear: "очистить экран",
@@ -961,6 +1133,31 @@
       addRow("crm    : интеграция сайта, заказов, оплат и таблиц", "term__row--muted");
       addRow("bot    : telegram бот или уведомления", "term__row--muted");
       addRow("vps    : запуск скрипта как systemd сервиса", "term__row--muted");
+    },
+    briefgen() {
+      getBriefText().split("\n").forEach((line) => addRow(line, "term__row--ok"));
+    },
+    limits() {
+      addRow("доступы отдельно от кода", "term__row--ok");
+      addRow("лимиты и антиботы обсуждаем до старта", "term__row--muted");
+      addRow("результат фиксируем так, чтобы его можно было проверить", "term__row--muted");
+    },
+    formats() {
+      addRow("audit   : разбор задачи и рисков", "term__row--ok");
+      addRow("build   : рабочий скрипт под одну понятную задачу", "term__row--ok");
+      addRow("service : запуск на VPS, расписание, логи, инструкция", "term__row--ok");
+    },
+    proof() {
+      addRow("parser : проверяем вход, выход и дубли", "term__row--ok");
+      addRow("crm    : тестовый заказ проходит весь путь", "term__row--ok");
+      addRow("bot    : команды и уведомления отвечают", "term__row--ok");
+      addRow("vps    : сервис запускается и пишет логи", "term__row--ok");
+    },
+    faq() {
+      addRow("нет API     : иногда можно через парсинг, сначала проверка рисков", "term__row--muted");
+      addRow("доступы     : не нужны до понятного плана", "term__row--muted");
+      addRow("после сдачи : инструкция и возможная поддержка", "term__row--muted");
+      addRow("малый старт : можно начать с аудита или скрипта", "term__row--muted");
     },
     brief() {
       addRow("1 ссылка на сайт, кабинет или API", "term__row--ok");

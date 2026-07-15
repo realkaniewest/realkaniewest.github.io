@@ -13,7 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,8 +25,10 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#stack" data-i18n="nav.stack">Стек</a>
       <a href="#router" data-i18n="nav.router">Разбор</a>
+      <a href="#brief" data-i18n="nav.brief">Бриф</a>
       <a href="#services" data-i18n="nav.services">Услуги</a>
       <a href="#projects" data-i18n="nav.projects">Проекты</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#process" data-i18n="nav.process">Процесс</a>
       <a href="#contact" data-i18n="nav.contact">Контакты</a>
     </nav>
@@ -201,6 +203,69 @@
     </div>
   </section>
 
+  <section class="section container reveal" id="brief">
+    <div class="brief-lab">
+      <div class="brief-lab__copy">
+        <p class="hero__kicker" data-i18n="brief.kicker">// заявка без воды</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="brief.title">Соберите короткий бриф</span></h2>
+        <p class="section__note" data-i18n="brief.note">Выберите пару пунктов, сайт соберет сообщение, которое можно скопировать и отправить в Telegram.</p>
+      </div>
+
+      <div class="brief-builder">
+        <div class="brief-builder__controls">
+          <label>
+            <span data-i18n="brief.fields.task">задача</span>
+            <select id="briefTask">
+              <option value="parser" data-i18n="brief.options.task.parser">парсер или сбор данных</option>
+              <option value="crm" data-i18n="brief.options.task.crm">интеграция с CRM</option>
+              <option value="bot" data-i18n="brief.options.task.bot">telegram бот</option>
+              <option value="vps" data-i18n="brief.options.task.vps">запуск на VPS</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="brief.fields.source">источник</span>
+            <select id="briefSource">
+              <option value="site" data-i18n="brief.options.source.site">сайт или каталог</option>
+              <option value="marketplace" data-i18n="brief.options.source.marketplace">маркетплейс</option>
+              <option value="crm" data-i18n="brief.options.source.crm">CRM или админка</option>
+              <option value="sheet" data-i18n="brief.options.source.sheet">google sheets</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="brief.fields.output">результат</span>
+            <select id="briefOutput">
+              <option value="sheets" data-i18n="brief.options.output.sheets">таблица</option>
+              <option value="database" data-i18n="brief.options.output.database">база данных</option>
+              <option value="telegram" data-i18n="brief.options.output.telegram">telegram уведомления</option>
+              <option value="crm" data-i18n="brief.options.output.crm">CRM сделка или заказ</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="brief.fields.tempo">режим</span>
+            <select id="briefTempo">
+              <option value="once" data-i18n="brief.options.tempo.once">разово</option>
+              <option value="daily" data-i18n="brief.options.tempo.daily">каждый день</option>
+              <option value="hourly" data-i18n="brief.options.tempo.hourly">каждый час</option>
+              <option value="service" data-i18n="brief.options.tempo.service">как постоянный сервис</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="brief-preview">
+          <div class="brief-preview__bar">
+            <span>$ brief --copy</span>
+            <strong id="briefStatus" data-i18n="brief.status.ready">готово к отправке</strong>
+          </div>
+          <pre id="briefPreview"></pre>
+          <div class="brief-preview__actions">
+            <button class="btn btn--accent" type="button" id="copyBrief" data-i18n="brief.copy">Скопировать бриф</button>
+            <a class="btn btn--ghost" href="https://t.me/realkaniewest2" rel="noopener noreferrer" data-i18n="brief.telegram">Открыть Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section container reveal" id="services">
     <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="services.title">Что можно заказать</span></h2>
     <p class="section__note" data-i18n="services.note">Не просто код ради кода, а маленькие системы, которые закрывают понятную бизнес задачу.</p>
@@ -222,6 +287,48 @@
         <h3 data-i18n="services.bot.title">Боты и автоматизация</h3>
         <p data-i18n="services.bot.text">Сделаю Telegram бота, сервис на VPS или скрипт, который работает по расписанию и не требует ручного запуска.</p>
         <span class="service-card__meta" data-i18n="services.bot.meta">на выходе: запуск и инструкция</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="formats">
+    <div class="formats-head">
+      <div>
+        <p class="hero__kicker" data-i18n="formats.kicker">// форматы работы</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="formats.title">Можно начать маленько</span></h2>
+      </div>
+      <p class="section__note" data-i18n="formats.note">Не обязательно сразу заказывать большую систему, можно начать с проверки идеи или маленького рабочего скрипта.</p>
+    </div>
+    <div class="formats-grid">
+      <article class="format-card">
+        <span class="format-card__tag">audit</span>
+        <h3 data-i18n="formats.audit.title">разбор задачи</h3>
+        <p data-i18n="formats.audit.text">смотрю источник данных, ограничения, доступы и предлагаю безопасный путь реализации</p>
+        <ul>
+          <li data-i18n="formats.audit.one">что реально автоматизировать</li>
+          <li data-i18n="formats.audit.two">какие есть риски</li>
+          <li data-i18n="formats.audit.three">какой нужен минимальный результат</li>
+        </ul>
+      </article>
+      <article class="format-card format-card--main">
+        <span class="format-card__tag">build</span>
+        <h3 data-i18n="formats.build.title">рабочий скрипт</h3>
+        <p data-i18n="formats.build.text">делаю понятный инструмент под одну задачу, который можно запустить и проверить на реальных данных</p>
+        <ul>
+          <li data-i18n="formats.build.one">код под задачу</li>
+          <li data-i18n="formats.build.two">выгрузка результата</li>
+          <li data-i18n="formats.build.three">инструкция по запуску</li>
+        </ul>
+      </article>
+      <article class="format-card">
+        <span class="format-card__tag">service</span>
+        <h3 data-i18n="formats.service.title">боевой сервис</h3>
+        <p data-i18n="formats.service.text">выношу скрипт на VPS, добавляю запуск по расписанию, логи и базовую поддержку после сдачи</p>
+        <ul>
+          <li data-i18n="formats.service.one">systemd или cron</li>
+          <li data-i18n="formats.service.two">логи и перезапуск</li>
+          <li data-i18n="formats.service.three">передача инструкции</li>
+        </ul>
       </article>
     </div>
   </section>
@@ -283,6 +390,38 @@
           <div class="card__tags"><span>PHP</span><span>JavaScript</span><span>CSS</span></div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="proof">
+    <div class="proof-panel">
+      <div class="proof-panel__head">
+        <p class="hero__kicker" data-i18n="proof.kicker">// проверяемый результат</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="proof.title">Как понять что работа готова</span></h2>
+        <p class="section__note" data-i18n="proof.note">Для каждой задачи заранее выбирается простой способ проверки, чтобы финал был не на ощущениях.</p>
+      </div>
+      <div class="proof-grid">
+        <article>
+          <span>parser</span>
+          <h3 data-i18n="proof.parser.title">данные сходятся</h3>
+          <p data-i18n="proof.parser.text">есть пример входа и выхода, дубли не плодятся, результат можно открыть и проверить</p>
+        </article>
+        <article>
+          <span>crm</span>
+          <h3 data-i18n="proof.crm.title">заявка доходит</h3>
+          <p data-i18n="proof.crm.text">тестовый заказ проходит весь путь, статусы видны, ошибка не теряется молча</p>
+        </article>
+        <article>
+          <span>bot</span>
+          <h3 data-i18n="proof.bot.title">сценарии отвечают</h3>
+          <p data-i18n="proof.bot.text">команды, уведомления и права проверены на понятных тестовых действиях</p>
+        </article>
+        <article>
+          <span>vps</span>
+          <h3 data-i18n="proof.vps.title">сервис переживает перезапуск</h3>
+          <p data-i18n="proof.vps.text">systemd или cron запускает задачу, логи доступны, инструкция не требует угадывать</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -353,6 +492,59 @@
         <h3 data-i18n="trust.three.title">после сдачи понятно</h3>
         <p data-i18n="trust.three.text">оставляю инструкцию, как запустить, где смотреть логи и что делать при сбое</p>
       </article>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="limits">
+    <div class="limits-panel">
+      <div>
+        <p class="hero__kicker" data-i18n="limits.kicker">// честные рамки</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="limits.title">Что проговариваю до старта</span></h2>
+      </div>
+      <div class="limits-grid">
+        <article>
+          <span>access</span>
+          <h3 data-i18n="limits.access.title">доступы отдельно от кода</h3>
+          <p data-i18n="limits.access.text">пароли, токены и ключи не попадают в публичный репозиторий и не лежат в html</p>
+        </article>
+        <article>
+          <span>risk</span>
+          <h3 data-i18n="limits.risk.title">лимиты и антиботы обсуждаем сразу</h3>
+          <p data-i18n="limits.risk.text">если сайт защищен капчей или правилами, сначала выбираем безопасный способ работы</p>
+        </article>
+        <article>
+          <span>scope</span>
+          <h3 data-i18n="limits.scope.title">результат фиксируем словами</h3>
+          <p data-i18n="limits.scope.text">до разработки понятно, какие данные получаем, куда кладем и как проверяем готовность</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="faq">
+    <div class="faq-shell">
+      <div>
+        <p class="hero__kicker" data-i18n="faq.kicker">// частые вопросы</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="faq.title">Перед тем как написать</span></h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary data-i18n="faq.api.q">если у сервиса нет API, это возможно?</summary>
+          <p data-i18n="faq.api.a">иногда да, через парсинг или браузерную автоматизацию, но сначала проверяю правила, капчи и риск блокировок</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.access.q">нужно ли сразу давать доступы?</summary>
+          <p data-i18n="faq.access.a">нет, сначала можно обсудить задачу на примерах, доступы нужны только когда понятен безопасный план работы</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.support.q">что будет после сдачи?</summary>
+          <p data-i18n="faq.support.a">передаю инструкцию, объясняю где смотреть логи и могу отдельно договориться о поддержке</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.small.q">можно начать с маленькой задачи?</summary>
+          <p data-i18n="faq.small.a">да, часто лучше начать с минимального скрипта или разбора, а потом расширять если результат полезен</p>
+        </details>
+      </div>
     </div>
   </section>
 

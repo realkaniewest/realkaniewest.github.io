@@ -6,9 +6,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="color-scheme" content="dark light">
-  <title>Егор — бэкенд, парсеры, автоматизация</title>
-  <meta name="description" content="Фриланс-разработчик: Python, PHP, парсеры, интеграции с CRM и маркетплейсами, Telegram-боты, автоматизация бизнес-процессов.">
-  <meta property="og:title" content="Егор — бэкенд, парсеры, автоматизация">
+  <title>realkaniewest - backend, парсеры, автоматизация</title>
+  <meta name="description" content="realkaniewest: junior backend, python, linux, парсеры, CRM-интеграции, Telegram-боты и автоматизация бизнес-процессов без лишних обещаний.">
+  <meta property="og:title" content="realkaniewest - backend, парсеры, автоматизация">
   <meta property="og:description" content="Делаю ботов, парсеры и интеграции, которые экономят часы ручной работы.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,16 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="#top">egor<span class="brand__at">@</span>dev<span class="brand__cursor"></span></a>
+    <a class="brand" href="#top">realkaniewest<span class="brand__at">@</span>dev<span class="brand__cursor"></span></a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#stack" data-i18n="nav.stack">Стек</a>
+      <a href="#router" data-i18n="nav.router">Разбор</a>
+      <a href="#services" data-i18n="nav.services">Услуги</a>
+      <a href="#projects" data-i18n="nav.projects">Проекты</a>
+      <a href="#process" data-i18n="nav.process">Процесс</a>
+      <a href="#contact" data-i18n="nav.contact">Контакты</a>
+    </nav>
 
     <div class="header-actions" aria-label="Site settings">
       <button class="switch switch--lang" id="langToggle" type="button" aria-label="Switch language">
@@ -41,9 +50,14 @@
 
 <main id="top">
   <section class="hero container">
+    <div class="hero__ambient" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div class="hero__text">
       <p class="hero__kicker" data-i18n="hero.kicker">// фриланс-разработчик</p>
-      <h1 class="hero__title" data-i18n="hero.title">Егор</h1>
+      <h1 class="hero__title" data-i18n="hero.title">realkaniewest</h1>
       <p class="hero__subtitle" data-i18n="hero.subtitle">Бэкенд, парсеры,<br>автоматизация</p>
       <p class="hero__lead" data-i18n="hero.lead">
         Делаю ботов, парсеры и интеграции, которые тихо работают на сервере и экономят людям часы ручной работы. Довожу до результата: код + деплой + инструкция.
@@ -51,6 +65,25 @@
       <div class="hero__actions">
         <a class="btn btn--accent" href="https://t.me/realkaniewest2" rel="noopener noreferrer" data-i18n="hero.telegram">Написать в Telegram</a>
         <a class="btn btn--ghost" href="mailto:isokokluu@gmail.com">isokokluu@gmail.com</a>
+      </div>
+      <div class="hero__proof">
+        <span data-i18n="hero.proof.one">реальные проекты</span>
+        <span data-i18n="hero.proof.two">серверный запуск</span>
+        <span data-i18n="hero.proof.three">без лишних обещаний</span>
+      </div>
+      <div class="hero__signals" aria-label="Быстрые направления работы">
+        <article>
+          <span data-i18n="hero.signals.one.label">данные</span>
+          <strong data-i18n="hero.signals.one.text">сбор, очистка, выгрузка</strong>
+        </article>
+        <article>
+          <span data-i18n="hero.signals.two.label">интеграции</span>
+          <strong data-i18n="hero.signals.two.text">CRM, sheets, маркетплейсы</strong>
+        </article>
+        <article>
+          <span data-i18n="hero.signals.three.label">сервер</span>
+          <strong data-i18n="hero.signals.three.text">VPS, systemd, инструкция</strong>
+        </article>
       </div>
     </div>
 
@@ -97,6 +130,99 @@
       <span class="chip">Linux / VPS</span>
       <span class="chip">MySQL / SQLite</span>
       <span class="chip">systemd</span>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="fit">
+    <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="fit.title">Когда я полезен</span></h2>
+    <p class="section__note" data-i18n="fit.note">Лучше всего захожу в задачи, где нужно не рисовать красивую презентацию, а убрать ручную работу и довести скрипт до запуска.</p>
+    <div class="fit-grid">
+      <article class="fit-card">
+        <span data-i18n="fit.one.kicker">ручная рутина</span>
+        <h3 data-i18n="fit.one.title">данные копируются руками</h3>
+        <p data-i18n="fit.one.text">делаю парсер или интеграцию, чтобы данные появлялись там, где они реально нужны</p>
+      </article>
+      <article class="fit-card">
+        <span data-i18n="fit.two.kicker">разрозненные сервисы</span>
+        <h3 data-i18n="fit.two.title">сайт, CRM и таблицы живут отдельно</h3>
+        <p data-i18n="fit.two.text">связываю заказы, статусы, оплаты и уведомления в один понятный поток</p>
+      </article>
+      <article class="fit-card">
+        <span data-i18n="fit.three.kicker">linux и vps</span>
+        <h3 data-i18n="fit.three.title">скрипт должен работать сам</h3>
+        <p data-i18n="fit.three.text">запускаю как сервис, добавляю базовые логи и оставляю инструкцию по поддержке</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="router">
+    <div class="router-shell">
+      <div class="router-copy">
+        <p class="hero__kicker" data-i18n="router.kicker">// быстрый разбор</p>
+        <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="router.title">Выберите свою задачу</span></h2>
+        <p class="section__note" data-i18n="router.note">Мини-консоль показывает, что обычно входит в такую работу, без завышенных обещаний и тумана.</p>
+      </div>
+
+      <div class="task-console" aria-live="polite">
+        <div class="task-console__tabs" role="tablist" aria-label="Тип задачи">
+          <button class="task-tab is-active" type="button" role="tab" aria-selected="true" data-task-route="parser" data-i18n="router.tabs.parser">парсер</button>
+          <button class="task-tab" type="button" role="tab" aria-selected="false" data-task-route="crm" data-i18n="router.tabs.crm">crm</button>
+          <button class="task-tab" type="button" role="tab" aria-selected="false" data-task-route="bot" data-i18n="router.tabs.bot">бот</button>
+          <button class="task-tab" type="button" role="tab" aria-selected="false" data-task-route="vps" data-i18n="router.tabs.vps">vps</button>
+        </div>
+
+        <div class="task-console__screen">
+          <div class="task-console__header">
+            <span class="task-console__prompt">$ plan --task</span>
+            <strong id="taskRouteTitle">парсер данных</strong>
+          </div>
+          <p id="taskRouteText">Собрать данные из сайта, кабинета или маркетплейса и передать их в удобный формат.</p>
+          <div class="task-console__grid">
+            <div>
+              <span data-i18n="router.output">на выходе</span>
+              <ul id="taskRouteOutput">
+                <li>таблица или база</li>
+                <li>защита от дублей</li>
+                <li>инструкция по запуску</li>
+              </ul>
+            </div>
+            <div>
+              <span data-i18n="router.stack">стек</span>
+              <p id="taskRouteStack">python, selenium, sqlite, systemd</p>
+            </div>
+            <div>
+              <span data-i18n="router.brief">что прислать</span>
+              <p id="taskRouteBrief">ссылку, пример результата и частоту обновления</p>
+            </div>
+          </div>
+          <a class="task-console__cta" href="https://t.me/realkaniewest2" rel="noopener noreferrer" data-i18n="router.cta">обсудить такую задачу</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container reveal" id="services">
+    <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="services.title">Что можно заказать</span></h2>
+    <p class="section__note" data-i18n="services.note">Не просто код ради кода, а маленькие системы, которые закрывают понятную бизнес задачу.</p>
+    <div class="service-grid">
+      <article class="service-card service-card--hot">
+        <span class="service-card__num">01</span>
+        <h3 data-i18n="services.parser.title">Парсеры и сбор данных</h3>
+        <p data-i18n="services.parser.text">Соберу данные с сайтов, маркетплейсов или кабинетов и аккуратно сложу их в таблицу, CRM или базу.</p>
+        <span class="service-card__meta" data-i18n="services.parser.meta">на выходе: csv, sheets или база</span>
+      </article>
+      <article class="service-card">
+        <span class="service-card__num">02</span>
+        <h3 data-i18n="services.crm.title">Интеграции с CRM</h3>
+        <p data-i18n="services.crm.text">Свяжу сайт, заказы, оплату, Telegram, Bitrix24, OCStore или Google Sheets в один рабочий процесс.</p>
+        <span class="service-card__meta" data-i18n="services.crm.meta">на выходе: связка без ручного переноса</span>
+      </article>
+      <article class="service-card">
+        <span class="service-card__num">03</span>
+        <h3 data-i18n="services.bot.title">Боты и автоматизация</h3>
+        <p data-i18n="services.bot.text">Сделаю Telegram бота, сервис на VPS или скрипт, который работает по расписанию и не требует ручного запуска.</p>
+        <span class="service-card__meta" data-i18n="services.bot.meta">на выходе: запуск и инструкция</span>
+      </article>
     </div>
   </section>
 
@@ -202,17 +328,43 @@
   <section class="section container reveal" id="process">
     <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="process.title">Как работаю</span></h2>
     <div class="log">
-      <div class="log-line"><span class="log-line__num">[1]</span> <span data-i18n="process.one">уточняю задачу и фиксирую ТЗ — без сюрпризов в конце</span></div>
+      <div class="log-line"><span class="log-line__num">[1]</span> <span data-i18n="process.one">уточняю задачу и фиксирую ТЗ - без сюрпризов в конце</span></div>
       <div class="log-line"><span class="log-line__num">[2]</span> <span data-i18n="process.two">делаю и показываю прогресс, на связи в процессе</span></div>
       <div class="log-line"><span class="log-line__num">[3]</span> <span data-i18n="process.three">сдаю работающий результат, а не «почти готово»</span></div>
       <div class="log-line"><span class="log-line__num">[4]</span> <span data-i18n="process.four">передаю с инструкцией и остаюсь на связи после сдачи</span></div>
     </div>
   </section>
 
+  <section class="section container reveal" id="trust">
+    <h2 class="section__title"><span class="section__hash">#</span> <span data-i18n="trust.title">Почему спокойно работать</span></h2>
+    <div class="trust-grid">
+      <article class="trust-card">
+        <span data-i18n="trust.one.kicker">01</span>
+        <h3 data-i18n="trust.one.title">сначала ограничения</h3>
+        <p data-i18n="trust.one.text">до старта проверяю, есть ли API, доступы, лимиты, капчи и риск блокировок</p>
+      </article>
+      <article class="trust-card">
+        <span data-i18n="trust.two.kicker">02</span>
+        <h3 data-i18n="trust.two.title">без опасных фокусов</h3>
+        <p data-i18n="trust.two.text">токены, пароли и приватные данные не зашиваются в публичный код</p>
+      </article>
+      <article class="trust-card">
+        <span data-i18n="trust.three.kicker">03</span>
+        <h3 data-i18n="trust.three.title">после сдачи понятно</h3>
+        <p data-i18n="trust.three.text">оставляю инструкцию, как запустить, где смотреть логи и что делать при сбое</p>
+      </article>
+    </div>
+  </section>
+
   <section class="cta reveal" id="contact">
     <div class="container cta__inner">
       <p class="cta__prompt" data-i18n="cta.prompt">$ есть задача?</p>
-      <h2 class="cta__title" data-i18n="cta.title">Напишите — обсудим</h2>
+      <h2 class="cta__title" data-i18n="cta.title">Напишите - обсудим</h2>
+      <div class="cta__brief">
+        <span data-i18n="cta.brief.one">ссылка на сайт или сервис</span>
+        <span data-i18n="cta.brief.two">что должно получиться</span>
+        <span data-i18n="cta.brief.three">куда отдавать результат</span>
+      </div>
       <div class="cta__actions">
         <a class="btn btn--accent btn--lg" href="https://t.me/realkaniewest2" rel="noopener noreferrer">Telegram: @realkaniewest2</a>
         <a class="btn btn--ghost btn--lg" href="mailto:isokokluu@gmail.com">isokokluu@gmail.com</a>
@@ -223,7 +375,7 @@
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <span data-i18n="footer.copy">(c) Егор, 2026</span>
+    <span data-i18n="footer.copy">(c) realkaniewest, 2026</span>
     <span class="site-footer__cat">=^.^=</span>
   </div>
 </footer>

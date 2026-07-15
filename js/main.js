@@ -13,14 +13,39 @@
   syncHeaderState();
   window.addEventListener("scroll", syncHeaderState, { passive: true });
 
+  if (!reduceMotion) {
+    window.addEventListener("pointermove", (event) => {
+      const x = Math.round((event.clientX / window.innerWidth) * 100);
+      const y = Math.round((event.clientY / window.innerHeight) * 100);
+      document.documentElement.style.setProperty("--spotlight-x", x + "%");
+      document.documentElement.style.setProperty("--spotlight-y", y + "%");
+    }, { passive: true });
+  }
+
   const translations = {
     ru: {
-      "nav.home": "Главная", "nav.stack": "Стек", "nav.projects": "Проекты", "nav.process": "Процесс", "nav.contact": "Контакты",
-      "hero.kicker": "// фриланс-разработчик", "hero.title": "Егор", "hero.subtitle": "Бэкенд, парсеры,<br>автоматизация",
+      "nav.home": "Главная", "nav.stack": "Стек", "nav.router": "Разбор", "nav.projects": "Проекты", "nav.services": "Услуги", "nav.process": "Процесс", "nav.contact": "Контакты",
+      "hero.kicker": "// фриланс-разработчик", "hero.title": "realkaniewest", "hero.subtitle": "Бэкенд, парсеры,<br>автоматизация",
       "hero.lead": "Делаю ботов, парсеры и интеграции, которые тихо работают на сервере и экономят людям часы ручной работы. Довожу до результата: код + деплой + инструкция.",
       "hero.telegram": "Написать в Telegram",
+      "hero.proof.one": "реальные проекты", "hero.proof.two": "серверный запуск", "hero.proof.three": "без лишних обещаний",
+      "hero.signals.one.label": "данные", "hero.signals.one.text": "сбор, очистка, выгрузка",
+      "hero.signals.two.label": "интеграции", "hero.signals.two.text": "CRM, sheets, маркетплейсы",
+      "hero.signals.three.label": "сервер", "hero.signals.three.text": "VPS, systemd, инструкция",
       "stats.rating": "рейтинг на Kwork", "stats.ordersValue": "заказы", "stats.orders": "выполнены и оплачены", "stats.time": "сдано вовремя", "stats.repeat": "повторных заказов",
       "stack.title": "Стек", "projects.title": "Проекты", "projects.note": "Реальные заказы с Kwork. Все работают в продакшене.",
+      "fit.title": "Когда я полезен", "fit.note": "Лучше всего захожу в задачи, где нужно не рисовать красивую презентацию, а убрать ручную работу и довести скрипт до запуска.",
+      "fit.one.kicker": "ручная рутина", "fit.one.title": "данные копируются руками", "fit.one.text": "делаю парсер или интеграцию, чтобы данные появлялись там, где они реально нужны",
+      "fit.two.kicker": "разрозненные сервисы", "fit.two.title": "сайт, CRM и таблицы живут отдельно", "fit.two.text": "связываю заказы, статусы, оплаты и уведомления в один понятный поток",
+      "fit.three.kicker": "linux и vps", "fit.three.title": "скрипт должен работать сам", "fit.three.text": "запускаю как сервис, добавляю базовые логи и оставляю инструкцию по поддержке",
+      "router.kicker": "// быстрый разбор", "router.title": "Выберите свою задачу", "router.note": "Мини-консоль показывает, что обычно входит в такую работу, без завышенных обещаний и тумана.",
+      "router.tabs.parser": "парсер", "router.tabs.crm": "crm", "router.tabs.bot": "бот", "router.tabs.vps": "vps",
+      "router.output": "на выходе", "router.stack": "стек", "router.brief": "что прислать", "router.cta": "обсудить такую задачу",
+      "services.title": "Что можно заказать", "services.note": "Не просто код ради кода, а маленькие системы, которые закрывают понятную бизнес задачу.",
+      "services.parser.title": "Парсеры и сбор данных", "services.parser.text": "Соберу данные с сайтов, маркетплейсов или кабинетов и аккуратно сложу их в таблицу, CRM или базу.",
+      "services.crm.title": "Интеграции с CRM", "services.crm.text": "Свяжу сайт, заказы, оплату, Telegram, Bitrix24, OCStore или Google Sheets в один рабочий процесс.",
+      "services.bot.title": "Боты и автоматизация", "services.bot.text": "Сделаю Telegram бота, сервис на VPS или скрипт, который работает по расписанию и не требует ручного запуска.",
+      "services.parser.meta": "на выходе: csv, sheets или база", "services.crm.meta": "на выходе: связка без ручного переноса", "services.bot.meta": "на выходе: запуск и инструкция",
       "cards.food.title": "Автоматизация закупок сети ресторанов", "cards.food.desc": "Парсер поставщика GFS + заказы Яндекс.Еды автоматически попадают в СКИФ CRM с оплатой. Работает круглосуточно как systemd-сервис.",
       "cards.b24.title": "Ozon и Wildberries в Битрикс24", "cards.b24.desc": "Заказы с маркетплейсов и статусы доставки синхронизируются с CRM сами, менеджер ничего не переносит руками.",
       "cards.avito.title": "Парсер Avito для доски объявлений", "cards.avito.desc": "Ежедневный сбор объявлений по 10 категориям, загрузка с фото на сайт, автоодобрение через админку, защита от дублей.",
@@ -33,16 +58,38 @@
       "landings.slides.shader.title": "Сделаю вам такой лендинг", "landings.slides.shader.text": "Тёмный первый экран с живым shader-фоном, сильным оффером и кнопкой заявки.",
       "landings.slides.paths.title": "Дизайн решает всё", "landings.slides.paths.text": "Сильный первый экран с WebGL-фоном, чистым интерфейсом и понятной кнопкой заявки.",
       "landings.slides.orbit.title": "И такой тоже", "landings.slides.orbit.text": "Кинематографичный hero для сервиса, стартапа или автоматизации: глубина, движение, премиальный вайб.",
-      "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ — без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
-      "cta.prompt": "$ есть задача?", "cta.title": "Напишите — обсудим", "footer.copy": "(c) Егор, 2026",
+      "process.title": "Как работаю", "process.one": "уточняю задачу и фиксирую ТЗ - без сюрпризов в конце", "process.two": "делаю и показываю прогресс, на связи в процессе", "process.three": "сдаю работающий результат, а не «почти готово»", "process.four": "передаю с инструкцией и остаюсь на связи после сдачи",
+      "trust.title": "Почему спокойно работать",
+      "trust.one.kicker": "01", "trust.one.title": "сначала ограничения", "trust.one.text": "до старта проверяю, есть ли API, доступы, лимиты, капчи и риск блокировок",
+      "trust.two.kicker": "02", "trust.two.title": "без опасных фокусов", "trust.two.text": "токены, пароли и приватные данные не зашиваются в публичный код",
+      "trust.three.kicker": "03", "trust.three.title": "после сдачи понятно", "trust.three.text": "оставляю инструкцию, как запустить, где смотреть логи и что делать при сбое",
+      "cta.prompt": "$ есть задача?", "cta.title": "Напишите - обсудим",
+      "cta.brief.one": "ссылка на сайт или сервис", "cta.brief.two": "что должно получиться", "cta.brief.three": "куда отдавать результат",
+      "footer.copy": "(c) realkaniewest, 2026",
     },
     en: {
-      "nav.home": "Home", "nav.stack": "Stack", "nav.projects": "Projects", "nav.process": "Process", "nav.contact": "Contact",
-      "hero.kicker": "// freelance developer", "hero.title": "Egor", "hero.subtitle": "Backend, parsers,<br>automation",
+      "nav.home": "Home", "nav.stack": "Stack", "nav.router": "Router", "nav.projects": "Projects", "nav.services": "Services", "nav.process": "Process", "nav.contact": "Contact",
+      "hero.kicker": "// freelance developer", "hero.title": "realkaniewest", "hero.subtitle": "Backend, parsers,<br>automation",
       "hero.lead": "I build bots, parsers, and integrations that run quietly on servers and save hours of manual work. I deliver the full result: code + deploy + instructions.",
       "hero.telegram": "Message on Telegram",
+      "hero.proof.one": "real projects", "hero.proof.two": "server launch", "hero.proof.three": "no overpromises",
+      "hero.signals.one.label": "data", "hero.signals.one.text": "collect, clean, export",
+      "hero.signals.two.label": "integrations", "hero.signals.two.text": "CRM, sheets, marketplaces",
+      "hero.signals.three.label": "server", "hero.signals.three.text": "VPS, systemd, instructions",
       "stats.rating": "Kwork rating", "stats.ordersValue": "orders", "stats.orders": "completed and paid", "stats.time": "delivered on time", "stats.repeat": "repeat orders",
       "stack.title": "Stack", "projects.title": "Projects", "projects.note": "Real Kwork orders. All of them run in production.",
+      "fit.title": "Where I fit best", "fit.note": "I am most useful when the job is not a pretty slide deck, but removing manual work and getting the script running.",
+      "fit.one.kicker": "manual routine", "fit.one.title": "data is copied by hand", "fit.one.text": "I build a parser or integration so the data lands where it is actually needed",
+      "fit.two.kicker": "scattered services", "fit.two.title": "site, CRM, and sheets live apart", "fit.two.text": "I connect orders, statuses, payments, and notifications into one clear flow",
+      "fit.three.kicker": "linux and vps", "fit.three.title": "the script must run by itself", "fit.three.text": "I run it as a service, add basic logs, and leave maintenance instructions",
+      "router.kicker": "// quick task router", "router.title": "Choose your task", "router.note": "A small console shows what is usually included, without inflated promises or fog.",
+      "router.tabs.parser": "parser", "router.tabs.crm": "crm", "router.tabs.bot": "bot", "router.tabs.vps": "vps",
+      "router.output": "output", "router.stack": "stack", "router.brief": "what to send", "router.cta": "discuss this task",
+      "services.title": "What I can build", "services.note": "Not code for the sake of code, but small systems that solve a clear business task.",
+      "services.parser.title": "Parsers and data collection", "services.parser.text": "I collect data from websites, marketplaces, and dashboards, then send it to tables, CRM, or databases.",
+      "services.crm.title": "CRM integrations", "services.crm.text": "I connect sites, orders, payments, Telegram, Bitrix24, OCStore, and Google Sheets into one working flow.",
+      "services.bot.title": "Bots and automation", "services.bot.text": "I build Telegram bots, VPS services, and scheduled scripts that do not need manual launching.",
+      "services.parser.meta": "output: csv, sheets, or database", "services.crm.meta": "output: no manual transfer", "services.bot.meta": "output: launch and instructions",
       "cards.food.title": "Restaurant purchasing automation", "cards.food.desc": "A GFS supplier parser plus Yandex Food orders automatically land in SKIF CRM with payment data. Runs 24/7 as a systemd service.",
       "cards.b24.title": "Ozon and Wildberries in Bitrix24", "cards.b24.desc": "Marketplace orders and delivery statuses sync with the CRM automatically, so managers do not move data by hand.",
       "cards.avito.title": "Avito parser for a listing board", "cards.avito.desc": "Daily collection across 10 categories, photo upload to the site, admin approval flow, and duplicate protection.",
@@ -56,7 +103,13 @@
       "landings.slides.paths.title": "Design is Everything", "landings.slides.paths.text": "Unleashing creativity through bold visuals, clean interfaces, and a clear request button.",
       "landings.slides.orbit.title": "And this one too", "landings.slides.orbit.text": "A cinematic hero for a service, startup, or automation product: depth, motion, and a premium feel.",
       "process.title": "How I work", "process.one": "clarify the task and lock the spec, so there are no surprises at the end", "process.two": "build and show progress, staying available while the work is in motion", "process.three": "deliver a working result, not a vague almost-ready state", "process.four": "handoff with instructions and stay available after delivery",
-      "cta.prompt": "$ got a task?", "cta.title": "Send it — let's discuss", "footer.copy": "(c) Egor, 2026",
+      "trust.title": "Why the work stays calm",
+      "trust.one.kicker": "01", "trust.one.title": "limits first", "trust.one.text": "before starting, I check API access, credentials, limits, captchas, and blocking risks",
+      "trust.two.kicker": "02", "trust.two.title": "no dangerous tricks", "trust.two.text": "tokens, passwords, and private data are not hardcoded into public code",
+      "trust.three.kicker": "03", "trust.three.title": "clear after delivery", "trust.three.text": "I leave instructions for launch, logs, and what to do if something fails",
+      "cta.prompt": "$ got a task?", "cta.title": "Send it - let's discuss",
+      "cta.brief.one": "link to site or service", "cta.brief.two": "desired result", "cta.brief.three": "where the output should go",
+      "footer.copy": "(c) realkaniewest, 2026",
     },
   };
 
@@ -90,7 +143,7 @@
     if (thumb) thumb.textContent = safeLang === "ru" ? "RU" : "EN";
     if (ghost) ghost.textContent = safeLang === "ru" ? "EN" : "RU";
     document.getElementById("langToggle")?.setAttribute("aria-pressed", String(safeLang === "en"));
-    document.title = safeLang === "ru" ? "Егор — бэкенд, парсеры, автоматизация" : "Egor — backend, parsers, automation";
+    document.title = safeLang === "ru" ? "realkaniewest - backend, парсеры, автоматизация" : "realkaniewest - backend, parsers, automation";
     localStorage.setItem("lang", safeLang);
   };
 
@@ -105,7 +158,106 @@
     applyLang(document.documentElement.dataset.lang === "en" ? "ru" : "en");
     const activeLanding = document.querySelector("[data-landing-tab].is-active")?.dataset.landingTab || "shader";
     setLandingDemo(activeLanding);
+    const activeRoute = document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "parser";
+    setTaskRoute(activeRoute);
   });
+
+  const taskRouteData = {
+    ru: {
+      parser: {
+        title: "парсер данных",
+        text: "Собрать данные из сайта, кабинета или маркетплейса и передать их в удобный формат.",
+        output: ["таблица или база", "защита от дублей", "инструкция по запуску"],
+        stack: "python, selenium, sqlite, systemd",
+        brief: "ссылку, пример результата и частоту обновления",
+      },
+      crm: {
+        title: "интеграция с crm",
+        text: "Связать заказы, статусы, оплату, Telegram или таблицы, чтобы менеджер не переносил данные руками.",
+        output: ["автоматическая передача данных", "лог ошибок и понятные статусы", "описание сценария работы"],
+        stack: "php, rest api, bitrix24, ocstore, google sheets",
+        brief: "какие системы связывать и пример одного заказа",
+      },
+      bot: {
+        title: "telegram бот",
+        text: "Сделать бота для заявок, уведомлений, простого кабинета или внутренней рутины.",
+        output: ["сценарии команд", "админский поток", "запуск на сервере"],
+        stack: "python, telegram api, sqlite, vps",
+        brief: "роль бота, список команд и кто будет им пользоваться",
+      },
+      vps: {
+        title: "запуск на vps",
+        text: "Поставить скрипт или маленький сервис на сервер, чтобы он работал без ручного запуска.",
+        output: ["systemd сервис", "базовые логи", "инструкция по перезапуску"],
+        stack: "linux, ssh, systemd, nginx, sqlite",
+        brief: "доступ, домен если есть, и как часто должен работать сервис",
+      },
+    },
+    en: {
+      parser: {
+        title: "data parser",
+        text: "Collect data from a site, dashboard, or marketplace and send it into a usable format.",
+        output: ["table or database", "duplicate protection", "launch instructions"],
+        stack: "python, selenium, sqlite, systemd",
+        brief: "link, expected output example, and update frequency",
+      },
+      crm: {
+        title: "crm integration",
+        text: "Connect orders, statuses, payments, Telegram, or sheets so managers do not copy data by hand.",
+        output: ["automatic data transfer", "error log and clear statuses", "flow description"],
+        stack: "php, rest api, bitrix24, ocstore, google sheets",
+        brief: "systems to connect and one sample order",
+      },
+      bot: {
+        title: "telegram bot",
+        text: "Build a bot for requests, notifications, a simple cabinet, or internal routine.",
+        output: ["command scenarios", "admin flow", "server launch"],
+        stack: "python, telegram api, sqlite, vps",
+        brief: "bot role, command list, and who will use it",
+      },
+      vps: {
+        title: "vps launch",
+        text: "Put a script or small service on a server so it runs without manual launch.",
+        output: ["systemd service", "basic logs", "restart instructions"],
+        stack: "linux, ssh, systemd, nginx, sqlite",
+        brief: "access, domain if any, and how often it should run",
+      },
+    },
+  };
+
+  const taskRouteButtons = [...document.querySelectorAll("[data-task-route]")];
+  const taskRouteTitle = document.getElementById("taskRouteTitle");
+  const taskRouteText = document.getElementById("taskRouteText");
+  const taskRouteOutput = document.getElementById("taskRouteOutput");
+  const taskRouteStack = document.getElementById("taskRouteStack");
+  const taskRouteBrief = document.getElementById("taskRouteBrief");
+
+  function setTaskRoute(name) {
+    if (!taskRouteTitle || !taskRouteText || !taskRouteOutput || !taskRouteStack || !taskRouteBrief) return;
+    const safeName = ["parser", "crm", "bot", "vps"].includes(name) ? name : "parser";
+    const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
+    const route = taskRouteData[lang][safeName];
+    taskRouteButtons.forEach((button) => {
+      const active = button.dataset.taskRoute === safeName;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+    taskRouteTitle.textContent = route.title;
+    taskRouteText.textContent = route.text;
+    taskRouteOutput.textContent = "";
+    route.output.forEach((line) => {
+      const item = document.createElement("li");
+      item.textContent = line;
+      taskRouteOutput.appendChild(item);
+    });
+    taskRouteStack.textContent = route.stack;
+    taskRouteBrief.textContent = route.brief;
+  }
+
+  taskRouteButtons.forEach((button) => {
+    button.addEventListener("click", () => setTaskRoute(button.dataset.taskRoute));
+  });
+  setTaskRoute(document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "parser");
 
   const landingDemo = document.getElementById("landingDemo");
   const landingButtons = [...document.querySelectorAll("[data-landing-tab]")];
@@ -515,7 +667,7 @@
 
   const command = "whoami";
   const output = [
-    "Егор - бэкенд-разработчик",
+    "realkaniewest - бэкенд-разработчик",
     "Python, PHP, парсеры, интеграции, автоматизация",
     "Kwork: рейтинг 5.0, 100% в срок",
   ];
@@ -556,11 +708,28 @@
   // выполнять нечего; весь вывод печатается через textContent (без innerHTML).
   const FS = {
     "about.txt": [
-      "Егор, фриланс-разработчик.",
+      "realkaniewest, фриланс-разработчик.",
       "Бэкенд, парсеры, интеграции, автоматизация.",
       "Превращаю рутину в скрипты, которые тихо работают на сервере.",
     ].join("\n"),
     "stack.txt": "Python | PHP | JavaScript | Selenium | REST API | Google Sheets API | OpenCart | Bitrix24 | Telegram-боты | Linux/VPS | MySQL/SQLite | systemd",
+    "fit.txt": [
+      "если данные переносят руками      -> можно автоматизировать",
+      "если заказы живут в разных местах -> можно связать",
+      "если скрипт запускают вручную     -> можно вынести на VPS",
+    ].join("\n"),
+    "router.txt": [
+      "parser : данные из сайта или кабинета",
+      "crm    : связка заказов, оплат и статусов",
+      "bot    : заявки, уведомления, простые панели",
+      "vps    : запуск скрипта как сервиса",
+    ].join("\n"),
+    "services.txt": [
+      "parser   : сбор данных, каталоги, маркетплейсы, кабинеты",
+      "crm      : Bitrix24, OCStore, Google Sheets, оплаты, статусы",
+      "bot      : Telegram, уведомления, заявки, простые панели",
+      "deploy   : VPS, systemd, инструкции, поддержка после сдачи",
+    ].join("\n"),
     "contact.txt": [
       "telegram : https://t.me/realkaniewest2",
       "email    : isokokluu@gmail.com",
@@ -599,7 +768,7 @@
 
   const COMMANDS = {
     help: "список команд",
-    ls: "список файлов (ls -a — со скрытыми)",
+    ls: "список файлов (ls -a - со скрытыми)",
     cd: "сменить папку (cd, cd .., cd ~)",
     pwd: "текущий путь",
     cat: "показать файл",
@@ -607,6 +776,9 @@
     echo: "напечатать текст",
     whoami: "кто я",
     neofetch: "система и питомец",
+    route: "быстрый разбор задач",
+    services: "что можно заказать",
+    brief: "что прислать для оценки",
     clear: "очистить экран",
     pet: "погладить питомца",
     woof: "превратить в пса",
@@ -776,6 +948,25 @@
         "                  питомец: кот (клик по нему!)",
       ];
       lines.forEach((l) => addRow(l, "term__row--ok"));
+    },
+    services() {
+      addRow("parser   : данные из сайтов, маркетплейсов и кабинетов", "term__row--ok");
+      addRow("crm      : связка заказов, оплат, статусов и таблиц", "term__row--ok");
+      addRow("bot      : Telegram бот или сервис на VPS", "term__row--ok");
+      addRow("deploy   : запуск, инструкция, поддержка после сдачи", "term__row--ok");
+    },
+    route() {
+      addRow("выбери тип задачи на странице или напиши мне в telegram:", "term__row--ok");
+      addRow("parser : парсер, сбор и очистка данных", "term__row--muted");
+      addRow("crm    : интеграция сайта, заказов, оплат и таблиц", "term__row--muted");
+      addRow("bot    : telegram бот или уведомления", "term__row--muted");
+      addRow("vps    : запуск скрипта как systemd сервиса", "term__row--muted");
+    },
+    brief() {
+      addRow("1 ссылка на сайт, кабинет или API", "term__row--ok");
+      addRow("2 что нужно получить на выходе", "term__row--ok");
+      addRow("3 куда складывать результат: sheets, crm, база, telegram", "term__row--ok");
+      addRow("4 если есть пример вручную сделанного результата - пришли его", "term__row--muted");
     },
     clear() {
       [...shellEl.querySelectorAll(".term__row")].forEach((r) => r.remove());

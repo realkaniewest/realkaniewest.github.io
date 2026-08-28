@@ -839,8 +839,8 @@
 
   const command = "whoami";
   const output = [
-    "realkaniewest - бэкенд-разработчик",
-    "Python, PHP, парсеры, интеграции, автоматизация",
+    "realkaniewest - fullstack-разработчик",
+    "JS, TS, Python, PHP, C#/.NET, сайты, API, автоматизация",
     "Kwork: рейтинг 5.0, 100% в срок",
   ];
 

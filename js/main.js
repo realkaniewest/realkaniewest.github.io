@@ -25,31 +25,33 @@
   const translations = {
     ru: {
       "nav.home": "Главная", "nav.stack": "Стек", "nav.router": "Разбор", "nav.brief": "Бриф", "nav.projects": "Проекты", "nav.services": "Услуги", "nav.faq": "FAQ", "nav.process": "Процесс", "nav.contact": "Контакты",
-      "hero.kicker": "// фриланс-разработчик", "hero.title": "realkaniewest", "hero.subtitle": "Бэкенд, парсеры,<br>автоматизация",
-      "hero.lead": "Делаю ботов, парсеры и интеграции, которые тихо работают на сервере и экономят людям часы ручной работы. Довожу до результата: код + деплой + инструкция.",
+      "hero.kicker": "// fullstack-разработчик", "hero.title": "realkaniewest", "hero.subtitle": "Сайты, веб приложения,<br>API и автоматизация",
+      "hero.lead": "Делаю сайты, личные кабинеты, админ панели, API, интеграции, парсеры, ботов и автоматизацию. Работаю с готовыми проектами и разработкой с нуля: код, деплой и понятная инструкция.",
       "hero.telegram": "Написать в Telegram",
-      "hero.proof.one": "реальные проекты", "hero.proof.two": "серверный запуск", "hero.proof.three": "без лишних обещаний",
-      "hero.signals.one.label": "данные", "hero.signals.one.text": "сбор, очистка, выгрузка",
-      "hero.signals.two.label": "интеграции", "hero.signals.two.text": "CRM, sheets, маркетплейсы",
-      "hero.signals.three.label": "сервер", "hero.signals.three.text": "VPS, systemd, инструкция",
+      "hero.proof.one": "реальные проекты", "hero.proof.two": "серверный запуск", "hero.proof.three": "разные языки и CMS",
+      "hero.signals.one.label": "frontend", "hero.signals.one.text": "лендинги, кабинеты, UI",
+      "hero.signals.two.label": "backend", "hero.signals.two.text": "API, базы, интеграции",
+      "hero.signals.three.label": "automation", "hero.signals.three.text": "парсеры, боты, VPS",
       "stats.rating": "рейтинг на Kwork", "stats.ordersValue": "заказы", "stats.orders": "выполнены и оплачены", "stats.time": "сдано вовремя", "stats.repeat": "повторных заказов",
       "stack.title": "Стек", "projects.title": "Проекты", "projects.note": "Реальные заказы с Kwork. Все работают в продакшене.",
-      "fit.title": "Когда я полезен", "fit.note": "Лучше всего захожу в задачи, где нужно не рисовать красивую презентацию, а убрать ручную работу и довести скрипт до запуска.",
-      "fit.one.kicker": "ручная рутина", "fit.one.title": "данные копируются руками", "fit.one.text": "делаю парсер или интеграцию, чтобы данные появлялись там, где они реально нужны",
-      "fit.two.kicker": "разрозненные сервисы", "fit.two.title": "сайт, CRM и таблицы живут отдельно", "fit.two.text": "связываю заказы, статусы, оплаты и уведомления в один понятный поток",
-      "fit.three.kicker": "linux и vps", "fit.three.title": "скрипт должен работать сам", "fit.three.text": "запускаю как сервис, добавляю базовые логи и оставляю инструкцию по поддержке",
+      "fit.title": "Когда я полезен", "fit.note": "Помогаю там, где нужен один исполнитель, который может поправить интерфейс, сервер, интеграцию и запуск проекта.",
+      "fit.one.kicker": "сайты и интерфейсы", "fit.one.title": "нужно доделать или собрать сайт", "fit.one.text": "делаю верстку, адаптив, формы, каталоги, личные кабинеты и доработки CMS",
+      "fit.two.kicker": "сервер и API", "fit.two.title": "нужна логика за интерфейсом", "fit.two.text": "пишу backend, REST API, работу с базой, авторизацию и интеграции с внешними сервисами",
+      "fit.three.kicker": "автоматизация", "fit.three.title": "рутина должна выполняться сама", "fit.three.text": "делаю парсеры, ботов, выгрузки, синхронизации, запуск на VPS и базовые логи",
       "router.kicker": "// быстрый разбор", "router.title": "Выберите свою задачу", "router.note": "Мини-консоль показывает, что обычно входит в такую работу, без завышенных обещаний и тумана.",
-      "router.tabs.parser": "парсер", "router.tabs.crm": "crm", "router.tabs.bot": "бот", "router.tabs.vps": "vps",
+      "router.tabs.web": "сайт", "router.tabs.api": "api", "router.tabs.parser": "парсер", "router.tabs.automation": "авто",
       "router.output": "на выходе", "router.stack": "стек", "router.brief": "что прислать", "router.cta": "обсудить такую задачу",
       "brief.kicker": "// заявка без воды", "brief.title": "Соберите короткий бриф", "brief.note": "Выберите пару пунктов, сайт соберет сообщение, которое можно скопировать и отправить в Telegram.",
       "brief.fields.task": "задача", "brief.fields.source": "источник", "brief.fields.output": "результат", "brief.fields.tempo": "режим",
-      "brief.options.task.parser": "парсер или сбор данных", "brief.options.task.crm": "интеграция с CRM", "brief.options.task.bot": "telegram бот", "brief.options.task.vps": "запуск на VPS",
+      "brief.options.task.web": "сайт или веб приложение", "brief.options.task.api": "backend или API", "brief.options.task.parser": "парсер или сбор данных", "brief.options.task.crm": "интеграция с CRM", "brief.options.task.bot": "telegram бот", "brief.options.task.vps": "сервер или VPS",
       "brief.options.source.site": "сайт или каталог", "brief.options.source.marketplace": "маркетплейс", "brief.options.source.crm": "CRM или админка", "brief.options.source.sheet": "google sheets",
       "brief.options.output.sheets": "таблица", "brief.options.output.database": "база данных", "brief.options.output.telegram": "telegram уведомления", "brief.options.output.crm": "CRM сделка или заказ",
       "brief.options.tempo.once": "разово", "brief.options.tempo.daily": "каждый день", "brief.options.tempo.hourly": "каждый час", "brief.options.tempo.service": "как постоянный сервис",
       "brief.status.ready": "готово к отправке", "brief.status.copied": "скопировано", "brief.status.copyFail": "скопируйте вручную",
       "brief.copy": "Скопировать бриф", "brief.telegram": "Открыть Telegram",
-      "services.title": "Что можно заказать", "services.note": "Не просто код ради кода, а маленькие системы, которые закрывают понятную бизнес задачу.",
+      "services.title": "Что можно заказать", "services.note": "От простых правок сайта до разработки веб приложения, API, интеграции и запуска на сервере.",
+      "services.web.title": "Сайты и веб приложения", "services.web.text": "Соберу лендинг, личный кабинет, админ панель, каталог или доработаю существующий сайт на CMS.", "services.web.meta": "стек: HTML, CSS, JS, React, PHP, CMS",
+      "services.api.title": "Backend и API", "services.api.text": "Сделаю серверную логику, REST API, базу данных, авторизацию, админку и подключение внешних сервисов.", "services.api.meta": "стек: Node.js, Python, PHP, SQL",
       "services.parser.title": "Парсеры и сбор данных", "services.parser.text": "Соберу данные с сайтов, маркетплейсов или кабинетов и аккуратно сложу их в таблицу, CRM или базу.",
       "services.crm.title": "Интеграции с CRM", "services.crm.text": "Свяжу сайт, заказы, оплату, Telegram, Bitrix24, OCStore или Google Sheets в один рабочий процесс.",
       "services.bot.title": "Боты и автоматизация", "services.bot.text": "Сделаю Telegram бота, сервис на VPS или скрипт, который работает по расписанию и не требует ручного запуска.",
@@ -57,7 +59,7 @@
       "formats.kicker": "// форматы работы", "formats.title": "Можно начать маленько", "formats.note": "Не обязательно сразу заказывать большую систему, можно начать с проверки идеи или маленького рабочего скрипта.",
       "formats.audit.title": "разбор задачи", "formats.audit.text": "смотрю источник данных, ограничения, доступы и предлагаю безопасный путь реализации",
       "formats.audit.one": "что реально автоматизировать", "formats.audit.two": "какие есть риски", "formats.audit.three": "какой нужен минимальный результат",
-      "formats.build.title": "рабочий скрипт", "formats.build.text": "делаю понятный инструмент под одну задачу, который можно запустить и проверить на реальных данных",
+      "formats.build.title": "рабочая разработка", "formats.build.text": "делаю понятный модуль, страницу, API или скрипт под задачу, который можно проверить на реальных данных",
       "formats.build.one": "код под задачу", "formats.build.two": "выгрузка результата", "formats.build.three": "инструкция по запуску",
       "formats.service.title": "боевой сервис", "formats.service.text": "выношу скрипт на VPS, добавляю запуск по расписанию, логи и базовую поддержку после сдачи",
       "formats.service.one": "systemd или cron", "formats.service.two": "логи и перезапуск", "formats.service.three": "передача инструкции",
@@ -67,10 +69,11 @@
       "cards.wb.title": "Аналитика Wildberries в Google Sheets", "cards.wb.desc": "Продажи и остатки подтягиваются в таблицы автоматически, сводные листы обновляются сами.",
       "cards.oc.title": "Доработки магазина на OCStore", "cards.oc.desc": "Интеграция со СКИФ CRM, бонусная программа, SMS-уведомления, починка оплат и авторизации.",
       "cards.ya.title": "YaFood UI для сети ресторанов", "cards.ya.desc": "Перенос интерфейса заказа в стиле Яндекс.Еды на основной домен: меню, корзина, оформление.",
+      "cards.web.title": "Доработки сайтов и кабинетов", "cards.web.desc": "Правки верстки, адаптива, форм, каталогов, админок и интеграций на WordPress, OpenCart, Tilda, Bitrix и самописных PHP проектах.",
       "proof.kicker": "// проверяемый результат", "proof.title": "Как понять что работа готова", "proof.note": "Для каждой задачи заранее выбирается простой способ проверки, чтобы финал был не на ощущениях.",
-      "proof.parser.title": "данные сходятся", "proof.parser.text": "есть пример входа и выхода, дубли не плодятся, результат можно открыть и проверить",
-      "proof.crm.title": "заявка доходит", "proof.crm.text": "тестовый заказ проходит весь путь, статусы видны, ошибка не теряется молча",
-      "proof.bot.title": "сценарии отвечают", "proof.bot.text": "команды, уведомления и права проверены на понятных тестовых действиях",
+      "proof.parser.title": "интерфейс работает", "proof.parser.text": "страницы открываются, формы отправляются, адаптив проверен, кнопки ведут куда нужно",
+      "proof.crm.title": "данные доходят", "proof.crm.text": "тестовая заявка проходит весь путь, статусы видны, ошибка не теряется молча",
+      "proof.bot.title": "сценарии отвечают", "proof.bot.text": "боты, парсеры, уведомления и права проверены на понятных тестовых действиях",
       "proof.vps.title": "сервис переживает перезапуск", "proof.vps.text": "systemd или cron запускает задачу, логи доступны, инструкция не требует угадывать",
       "landings.kicker": "// лендинги под задачу", "landings.title": "Какие лендинги я умею делать", "landings.note": "Ниже несколько направлений: меняй кнопками и смотри, как может выглядеть первый экран.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
@@ -98,31 +101,33 @@
     },
     en: {
       "nav.home": "Home", "nav.stack": "Stack", "nav.router": "Router", "nav.brief": "Brief", "nav.projects": "Projects", "nav.services": "Services", "nav.faq": "FAQ", "nav.process": "Process", "nav.contact": "Contact",
-      "hero.kicker": "// freelance developer", "hero.title": "realkaniewest", "hero.subtitle": "Backend, parsers,<br>automation",
-      "hero.lead": "I build bots, parsers, and integrations that run quietly on servers and save hours of manual work. I deliver the full result: code + deploy + instructions.",
+      "hero.kicker": "// fullstack developer", "hero.title": "realkaniewest", "hero.subtitle": "Websites, web apps,<br>APIs and automation",
+      "hero.lead": "I build websites, dashboards, admin panels, APIs, integrations, parsers, bots, and business automation. I work with existing projects and from scratch: code, deploy, and clear instructions.",
       "hero.telegram": "Message on Telegram",
-      "hero.proof.one": "real projects", "hero.proof.two": "server launch", "hero.proof.three": "no overpromises",
-      "hero.signals.one.label": "data", "hero.signals.one.text": "collect, clean, export",
-      "hero.signals.two.label": "integrations", "hero.signals.two.text": "CRM, sheets, marketplaces",
-      "hero.signals.three.label": "server", "hero.signals.three.text": "VPS, systemd, instructions",
+      "hero.proof.one": "real projects", "hero.proof.two": "server launch", "hero.proof.three": "different languages and CMS",
+      "hero.signals.one.label": "frontend", "hero.signals.one.text": "landing pages, dashboards, UI",
+      "hero.signals.two.label": "backend", "hero.signals.two.text": "APIs, databases, integrations",
+      "hero.signals.three.label": "automation", "hero.signals.three.text": "parsers, bots, VPS",
       "stats.rating": "Kwork rating", "stats.ordersValue": "orders", "stats.orders": "completed and paid", "stats.time": "delivered on time", "stats.repeat": "repeat orders",
       "stack.title": "Stack", "projects.title": "Projects", "projects.note": "Real Kwork orders. All of them run in production.",
-      "fit.title": "Where I fit best", "fit.note": "I am most useful when the job is not a pretty slide deck, but removing manual work and getting the script running.",
-      "fit.one.kicker": "manual routine", "fit.one.title": "data is copied by hand", "fit.one.text": "I build a parser or integration so the data lands where it is actually needed",
-      "fit.two.kicker": "scattered services", "fit.two.title": "site, CRM, and sheets live apart", "fit.two.text": "I connect orders, statuses, payments, and notifications into one clear flow",
-      "fit.three.kicker": "linux and vps", "fit.three.title": "the script must run by itself", "fit.three.text": "I run it as a service, add basic logs, and leave maintenance instructions",
+      "fit.title": "Where I fit best", "fit.note": "I help when one developer needs to handle the interface, server logic, integration, and launch.",
+      "fit.one.kicker": "sites and interfaces", "fit.one.title": "a site needs building or fixing", "fit.one.text": "I build layouts, responsive pages, forms, catalogs, dashboards, and CMS improvements",
+      "fit.two.kicker": "server and API", "fit.two.title": "the interface needs logic behind it", "fit.two.text": "I build backend, REST APIs, databases, auth, and third party integrations",
+      "fit.three.kicker": "automation", "fit.three.title": "routine should run by itself", "fit.three.text": "I build parsers, bots, exports, sync jobs, VPS launch, and basic logs",
       "router.kicker": "// quick task router", "router.title": "Choose your task", "router.note": "A small console shows what is usually included, without inflated promises or fog.",
-      "router.tabs.parser": "parser", "router.tabs.crm": "crm", "router.tabs.bot": "bot", "router.tabs.vps": "vps",
+      "router.tabs.web": "web", "router.tabs.api": "api", "router.tabs.parser": "parser", "router.tabs.automation": "auto",
       "router.output": "output", "router.stack": "stack", "router.brief": "what to send", "router.cta": "discuss this task",
       "brief.kicker": "// no-fluff request", "brief.title": "Build a short brief", "brief.note": "Pick a few options and the site creates a message you can copy and send in Telegram.",
       "brief.fields.task": "task", "brief.fields.source": "source", "brief.fields.output": "result", "brief.fields.tempo": "mode",
-      "brief.options.task.parser": "parser or data collection", "brief.options.task.crm": "CRM integration", "brief.options.task.bot": "telegram bot", "brief.options.task.vps": "VPS launch",
+      "brief.options.task.web": "website or web app", "brief.options.task.api": "backend or API", "brief.options.task.parser": "parser or data collection", "brief.options.task.crm": "CRM integration", "brief.options.task.bot": "telegram bot", "brief.options.task.vps": "server or VPS",
       "brief.options.source.site": "website or catalog", "brief.options.source.marketplace": "marketplace", "brief.options.source.crm": "CRM or admin panel", "brief.options.source.sheet": "google sheets",
       "brief.options.output.sheets": "spreadsheet", "brief.options.output.database": "database", "brief.options.output.telegram": "telegram notifications", "brief.options.output.crm": "CRM deal or order",
       "brief.options.tempo.once": "one time", "brief.options.tempo.daily": "daily", "brief.options.tempo.hourly": "hourly", "brief.options.tempo.service": "as a permanent service",
       "brief.status.ready": "ready to send", "brief.status.copied": "copied", "brief.status.copyFail": "copy manually",
       "brief.copy": "Copy brief", "brief.telegram": "Open Telegram",
-      "services.title": "What I can build", "services.note": "Not code for the sake of code, but small systems that solve a clear business task.",
+      "services.title": "What I can build", "services.note": "From quick website fixes to web apps, APIs, integrations, and server launch.",
+      "services.web.title": "Websites and web apps", "services.web.text": "I build landing pages, dashboards, admin panels, catalogs, or improve existing CMS websites.", "services.web.meta": "stack: HTML, CSS, JS, React, PHP, CMS",
+      "services.api.title": "Backend and APIs", "services.api.text": "I build server logic, REST APIs, databases, auth, admin tools, and external service integrations.", "services.api.meta": "stack: Node.js, Python, PHP, SQL",
       "services.parser.title": "Parsers and data collection", "services.parser.text": "I collect data from websites, marketplaces, and dashboards, then send it to tables, CRM, or databases.",
       "services.crm.title": "CRM integrations", "services.crm.text": "I connect sites, orders, payments, Telegram, Bitrix24, OCStore, and Google Sheets into one working flow.",
       "services.bot.title": "Bots and automation", "services.bot.text": "I build Telegram bots, VPS services, and scheduled scripts that do not need manual launching.",
@@ -130,7 +135,7 @@
       "formats.kicker": "// work formats", "formats.title": "You can start small", "formats.note": "You do not need to order a large system right away, we can start with idea validation or a small working script.",
       "formats.audit.title": "task review", "formats.audit.text": "I check the data source, limits, access, and suggest a safe implementation path",
       "formats.audit.one": "what can really be automated", "formats.audit.two": "what risks exist", "formats.audit.three": "what minimum result is needed",
-      "formats.build.title": "working script", "formats.build.text": "I build a clear tool for one task that can be launched and checked on real data",
+      "formats.build.title": "working development", "formats.build.text": "I build a clear module, page, API, or script that can be checked on real data",
       "formats.build.one": "task focused code", "formats.build.two": "result export", "formats.build.three": "launch instructions",
       "formats.service.title": "production service", "formats.service.text": "I move the script to VPS, add scheduled launch, logs, and basic support after delivery",
       "formats.service.one": "systemd or cron", "formats.service.two": "logs and restart", "formats.service.three": "handoff instructions",
@@ -140,10 +145,11 @@
       "cards.wb.title": "Wildberries analytics in Google Sheets", "cards.wb.desc": "Sales and stock data are pulled into spreadsheets automatically, with summary sheets refreshing on their own.",
       "cards.oc.title": "OCStore shop improvements", "cards.oc.desc": "SKIF CRM integration, bonus program, SMS notifications, payment fixes, and login fixes.",
       "cards.ya.title": "YaFood UI for a restaurant chain", "cards.ya.desc": "A Yandex Food-style ordering interface on the main domain: menu, cart, and checkout.",
+      "cards.web.title": "Website and dashboard improvements", "cards.web.desc": "Layout, responsive fixes, forms, catalogs, admin panels, and integrations for WordPress, OpenCart, Tilda, Bitrix, and custom PHP projects.",
       "proof.kicker": "// verifiable result", "proof.title": "How we know it is ready", "proof.note": "For each task, a simple verification method is picked up front, so the finish is not based on vibes.",
-      "proof.parser.title": "data matches", "proof.parser.text": "there is an input and output example, duplicates do not grow, and the result can be opened and checked",
-      "proof.crm.title": "request arrives", "proof.crm.text": "a test order passes the full path, statuses are visible, and errors are not silent",
-      "proof.bot.title": "flows respond", "proof.bot.text": "commands, notifications, and permissions are checked with clear test actions",
+      "proof.parser.title": "interface works", "proof.parser.text": "pages open, forms submit, responsive layout is checked, and buttons lead where they should",
+      "proof.crm.title": "data arrives", "proof.crm.text": "a test request passes the full path, statuses are visible, and errors are not silent",
+      "proof.bot.title": "flows respond", "proof.bot.text": "bots, parsers, notifications, and permissions are checked with clear test actions",
       "proof.vps.title": "service survives restart", "proof.vps.text": "systemd or cron launches the task, logs are available, and instructions do not require guessing",
       "landings.kicker": "// landing pages for the task", "landings.title": "Landing pages I can build", "landings.note": "Switch the buttons below to preview a few first-screen directions.",
       "landings.tabs.shader": "Shader", "landings.tabs.paths": "Paths", "landings.tabs.orbit": "Orbit",
@@ -201,7 +207,7 @@
     if (thumb) thumb.textContent = safeLang === "ru" ? "RU" : "EN";
     if (ghost) ghost.textContent = safeLang === "ru" ? "EN" : "RU";
     document.getElementById("langToggle")?.setAttribute("aria-pressed", String(safeLang === "en"));
-    document.title = safeLang === "ru" ? "realkaniewest - backend, парсеры, автоматизация" : "realkaniewest - backend, parsers, automation";
+    document.title = safeLang === "ru" ? "realkaniewest - fullstack, сайты, API, автоматизация" : "realkaniewest - fullstack, websites, APIs, automation";
     localStorage.setItem("lang", safeLang);
   };
 
@@ -216,7 +222,7 @@
     applyLang(document.documentElement.dataset.lang === "en" ? "ru" : "en");
     const activeLanding = document.querySelector("[data-landing-tab].is-active")?.dataset.landingTab || "shader";
     setLandingDemo(activeLanding);
-    const activeRoute = document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "parser";
+    const activeRoute = document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "web";
     setTaskRoute(activeRoute);
     updateBrief();
   });
@@ -240,7 +246,7 @@
       tempo: "режим",
       context: "контекст",
       contextText: "могу прислать ссылку, пример результата и доступы после согласования",
-      taskValues: { parser: "парсер или сбор данных", crm: "интеграция с CRM", bot: "telegram бот", vps: "запуск на VPS" },
+      taskValues: { web: "сайт или веб приложение", api: "backend или API", parser: "парсер или сбор данных", crm: "интеграция с CRM", bot: "telegram бот", vps: "сервер или VPS" },
       sourceValues: { site: "сайт или каталог", marketplace: "маркетплейс", crm: "CRM или админка", sheet: "google sheets" },
       outputValues: { sheets: "таблица", database: "база данных", telegram: "telegram уведомления", crm: "CRM сделка или заказ" },
       tempoValues: { once: "разово", daily: "каждый день", hourly: "каждый час", service: "как постоянный сервис" },
@@ -253,7 +259,7 @@
       tempo: "mode",
       context: "context",
       contextText: "I can send a link, expected output example, and access after agreement",
-      taskValues: { parser: "parser or data collection", crm: "CRM integration", bot: "telegram bot", vps: "VPS launch" },
+      taskValues: { web: "website or web app", api: "backend or API", parser: "parser or data collection", crm: "CRM integration", bot: "telegram bot", vps: "server or VPS" },
       sourceValues: { site: "website or catalog", marketplace: "marketplace", crm: "CRM or admin panel", sheet: "google sheets" },
       outputValues: { sheets: "spreadsheet", database: "database", telegram: "telegram notifications", crm: "CRM deal or order" },
       tempoValues: { once: "one time", daily: "daily", hourly: "hourly", service: "as a permanent service" },
@@ -263,7 +269,7 @@
   function getBriefText() {
     const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
     const labels = briefLabels[lang];
-    const task = briefSelects.task?.value || "parser";
+    const task = briefSelects.task?.value || "web";
     const source = briefSelects.source?.value || "site";
     const output = briefSelects.output?.value || "sheets";
     const tempo = briefSelects.tempo?.value || "once";
@@ -302,6 +308,20 @@
 
   const taskRouteData = {
     ru: {
+      web: {
+        title: "сайт или веб приложение",
+        text: "Собрать лендинг, личный кабинет, админ панель или доработать существующий сайт.",
+        output: ["адаптивный интерфейс", "формы и интеграции", "публикация на сервере"],
+        stack: "html, css, javascript, react, php, wordpress",
+        brief: "ссылку, макет или пример, список страниц и доступы после согласования",
+      },
+      api: {
+        title: "backend и api",
+        text: "Сделать серверную часть, REST API, базу данных, авторизацию или связь с внешними сервисами.",
+        output: ["эндпоинты и логика", "работа с базой", "документация по запуску"],
+        stack: "node.js, express, python, fastapi, php, mysql",
+        brief: "что принимает API, что возвращает и с какими сервисами работает",
+      },
       parser: {
         title: "парсер данных",
         text: "Собрать данные из сайта, кабинета или маркетплейса и передать их в удобный формат.",
@@ -323,15 +343,29 @@
         stack: "python, telegram api, sqlite, vps",
         brief: "роль бота, список команд и кто будет им пользоваться",
       },
-      vps: {
-        title: "запуск на vps",
-        text: "Поставить скрипт или маленький сервис на сервер, чтобы он работал без ручного запуска.",
-        output: ["systemd сервис", "базовые логи", "инструкция по перезапуску"],
-        stack: "linux, ssh, systemd, nginx, sqlite",
-        brief: "доступ, домен если есть, и как часто должен работать сервис",
+      automation: {
+        title: "автоматизация",
+        text: "Сделать бота, выгрузку, синхронизацию или сервис, который работает по расписанию.",
+        output: ["рабочий сценарий", "логи и статусы", "инструкция по использованию"],
+        stack: "python, php, telegram api, google api, vps",
+        brief: "что нужно автоматизировать, источник данных и желаемый результат",
       },
     },
     en: {
+      web: {
+        title: "website or web app",
+        text: "Build a landing page, dashboard, admin panel, or improve an existing website.",
+        output: ["responsive interface", "forms and integrations", "server publishing"],
+        stack: "html, css, javascript, react, php, wordpress",
+        brief: "link, design example, page list, and access after agreement",
+      },
+      api: {
+        title: "backend and api",
+        text: "Build server logic, REST API, database flow, auth, or third party integrations.",
+        output: ["endpoints and logic", "database flow", "launch documentation"],
+        stack: "node.js, express, python, fastapi, php, mysql",
+        brief: "what the API accepts, returns, and connects with",
+      },
       parser: {
         title: "data parser",
         text: "Collect data from a site, dashboard, or marketplace and send it into a usable format.",
@@ -353,12 +387,12 @@
         stack: "python, telegram api, sqlite, vps",
         brief: "bot role, command list, and who will use it",
       },
-      vps: {
-        title: "vps launch",
-        text: "Put a script or small service on a server so it runs without manual launch.",
-        output: ["systemd service", "basic logs", "restart instructions"],
-        stack: "linux, ssh, systemd, nginx, sqlite",
-        brief: "access, domain if any, and how often it should run",
+      automation: {
+        title: "automation",
+        text: "Build a bot, export, sync job, or scheduled service.",
+        output: ["working scenario", "logs and statuses", "usage instructions"],
+        stack: "python, php, telegram api, google api, vps",
+        brief: "what to automate, data source, and expected result",
       },
     },
   };
@@ -372,7 +406,7 @@
 
   function setTaskRoute(name) {
     if (!taskRouteTitle || !taskRouteText || !taskRouteOutput || !taskRouteStack || !taskRouteBrief) return;
-    const safeName = ["parser", "crm", "bot", "vps"].includes(name) ? name : "parser";
+    const safeName = ["web", "api", "parser", "automation"].includes(name) ? name : "web";
     const lang = document.documentElement.dataset.lang === "en" ? "en" : "ru";
     const route = taskRouteData[lang][safeName];
     taskRouteButtons.forEach((button) => {
@@ -395,7 +429,7 @@
   taskRouteButtons.forEach((button) => {
     button.addEventListener("click", () => setTaskRoute(button.dataset.taskRoute));
   });
-  setTaskRoute(document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "parser");
+  setTaskRoute(document.querySelector("[data-task-route].is-active")?.dataset.taskRoute || "web");
 
   const landingDemo = document.getElementById("landingDemo");
   const landingButtons = [...document.querySelectorAll("[data-landing-tab]")];
@@ -846,28 +880,29 @@
   // выполнять нечего; весь вывод печатается через textContent (без innerHTML).
   const FS = {
     "about.txt": [
-      "realkaniewest, фриланс-разработчик.",
-      "Бэкенд, парсеры, интеграции, автоматизация.",
-      "Превращаю рутину в скрипты, которые тихо работают на сервере.",
+      "realkaniewest, fullstack-разработчик.",
+      "Сайты, веб приложения, API, интеграции, парсеры, боты.",
+      "Работаю с frontend, backend, CMS, базами данных и запуском на сервере.",
     ].join("\n"),
-    "stack.txt": "Python | PHP | JavaScript | Selenium | REST API | Google Sheets API | OpenCart | Bitrix24 | Telegram-боты | Linux/VPS | MySQL/SQLite | systemd",
+    "stack.txt": "JavaScript | TypeScript | Python | PHP | C#/.NET | React | Next.js | Vue | Node.js | FastAPI | Django | Laravel | WordPress | OpenCart | Bitrix | Tilda | PostgreSQL | MySQL | Docker | Linux/VPS",
     "fit.txt": [
+      "если сайт нужно доделать          -> можно поправить frontend и CMS",
+      "если нужна логика за интерфейсом  -> можно сделать backend и API",
       "если данные переносят руками      -> можно автоматизировать",
-      "если заказы живут в разных местах -> можно связать",
-      "если скрипт запускают вручную     -> можно вынести на VPS",
+      "если проект должен работать сам   -> можно вынести на VPS",
     ].join("\n"),
     "router.txt": [
+      "web    : сайты, кабинеты, админки, CMS",
+      "api    : backend, REST API, базы, авторизация",
       "parser : данные из сайта или кабинета",
-      "crm    : связка заказов, оплат и статусов",
-      "bot    : заявки, уведомления, простые панели",
-      "vps    : запуск скрипта как сервиса",
+      "auto   : боты, интеграции, синхронизации, VPS",
     ].join("\n"),
     "brief-template.txt": [
       "Привет, хочу обсудить задачу",
-      "задача: парсер или интеграция",
-      "источник: сайт, CRM, маркетплейс или таблица",
-      "результат: таблица, база, Telegram или CRM",
-      "режим: разово, по расписанию или как сервис",
+      "задача: сайт, API, интеграция, парсер или автоматизация",
+      "источник: сайт, CMS, CRM, маркетплейс, таблица или база",
+      "результат: страница, API, таблица, база, бот или CRM",
+      "режим: разово, доработка проекта или постоянный сервис",
     ].join("\n"),
     "limits.txt": [
       "доступы не храню в публичном коде",
@@ -875,6 +910,8 @@
       "готовность фиксируем проверяемым результатом",
     ].join("\n"),
     "services.txt": [
+      "web      : сайты, кабинеты, админки, адаптив, CMS",
+      "api      : backend, REST API, базы данных, авторизация",
       "parser   : сбор данных, каталоги, маркетплейсы, кабинеты",
       "crm      : Bitrix24, OCStore, Google Sheets, оплаты, статусы",
       "bot      : Telegram, уведомления, заявки, простые панели",
@@ -882,14 +919,14 @@
     ].join("\n"),
     "formats.txt": [
       "audit   : быстро понять риски, доступы и минимальный результат",
-      "build   : сделать рабочий скрипт под одну задачу",
+      "build   : сделать страницу, модуль, API или рабочий скрипт",
       "service : вынести на VPS, добавить расписание, логи и инструкцию",
     ].join("\n"),
     "proof.txt": [
+      "web    : страницы открываются, формы работают, адаптив проверен",
+      "api    : тестовый запрос проходит и возвращает нужные данные",
       "parser : вход и выход совпадают, дублей нет",
-      "crm    : тестовый заказ доходит и получает статус",
-      "bot    : команды и уведомления проверены",
-      "vps    : сервис запускается после перезапуска",
+      "auto   : сценарий запускается, пишет логи и не теряет ошибки",
     ].join("\n"),
     "faq.txt": [
       "нет API       : сначала проверяем правила и риски",
@@ -1115,13 +1152,15 @@
         "       ( o.o )    -----------",
         "        > ^ <     ОС: GhostOS (терминальная)",
         "       /     \\    оболочка: egorsh 1.0",
-        "      ( | | | )   стек: Python, PHP, JS",
+      "      ( | | | )   стек: JS, TS, Python, PHP, C#",
         "       \\_m_m_/    редактор: vim (btw)",
         "                  питомец: кот (клик по нему!)",
       ];
       lines.forEach((l) => addRow(l, "term__row--ok"));
     },
     services() {
+      addRow("web      : сайты, кабинеты, админки, CMS и адаптив", "term__row--ok");
+      addRow("api      : backend, REST API, базы данных, авторизация", "term__row--ok");
       addRow("parser   : данные из сайтов, маркетплейсов и кабинетов", "term__row--ok");
       addRow("crm      : связка заказов, оплат, статусов и таблиц", "term__row--ok");
       addRow("bot      : Telegram бот или сервис на VPS", "term__row--ok");
@@ -1129,10 +1168,10 @@
     },
     route() {
       addRow("выбери тип задачи на странице или напиши мне в telegram:", "term__row--ok");
+      addRow("web    : сайт, кабинет, админка, доработка CMS", "term__row--muted");
+      addRow("api    : backend, REST API, база, авторизация", "term__row--muted");
       addRow("parser : парсер, сбор и очистка данных", "term__row--muted");
-      addRow("crm    : интеграция сайта, заказов, оплат и таблиц", "term__row--muted");
-      addRow("bot    : telegram бот или уведомления", "term__row--muted");
-      addRow("vps    : запуск скрипта как systemd сервиса", "term__row--muted");
+      addRow("auto   : бот, интеграция, синхронизация, VPS", "term__row--muted");
     },
     briefgen() {
       getBriefText().split("\n").forEach((line) => addRow(line, "term__row--ok"));
@@ -1144,14 +1183,14 @@
     },
     formats() {
       addRow("audit   : разбор задачи и рисков", "term__row--ok");
-      addRow("build   : рабочий скрипт под одну понятную задачу", "term__row--ok");
+      addRow("build   : страница, модуль, API или рабочий скрипт", "term__row--ok");
       addRow("service : запуск на VPS, расписание, логи, инструкция", "term__row--ok");
     },
     proof() {
+      addRow("web    : проверяем страницы, формы и адаптив", "term__row--ok");
+      addRow("api    : тестовый запрос возвращает нужный результат", "term__row--ok");
       addRow("parser : проверяем вход, выход и дубли", "term__row--ok");
-      addRow("crm    : тестовый заказ проходит весь путь", "term__row--ok");
-      addRow("bot    : команды и уведомления отвечают", "term__row--ok");
-      addRow("vps    : сервис запускается и пишет логи", "term__row--ok");
+      addRow("auto   : сценарий работает, логи доступны", "term__row--ok");
     },
     faq() {
       addRow("нет API     : иногда можно через парсинг, сначала проверка рисков", "term__row--muted");
